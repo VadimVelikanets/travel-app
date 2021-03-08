@@ -14,7 +14,7 @@ export default class CarouselBox extends Component {
             alt='nature'
           />
           <Carousel.Caption>
-            <h3 className='carousel_caption'>Lorem lorem lorem </h3>
+            <h1 className='carousel_caption'>Lorem lorem lorem </h1>
             <p className='carousel_caption'>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
               distinctio saepe laudantium nobis sed asperiores molestias magni
@@ -30,7 +30,7 @@ export default class CarouselBox extends Component {
             alt='nature'
           />
           <Carousel.Caption>
-            <h3 className='carousel_caption'>Lorem lorem lorem </h3>
+            <h1 className='carousel_caption'>Lorem lorem lorem </h1>
             <p className='carousel_caption'>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
               distinctio saepe laudantium nobis sed asperiores molestias magni
@@ -46,7 +46,7 @@ export default class CarouselBox extends Component {
             alt='nature'
           />
           <Carousel.Caption>
-            <h3 className='carousel_caption'>Lorem lorem lorem </h3>
+            <h1 className='carousel_caption'>Lorem lorem lorem </h1>
             <p className='carousel_caption'>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
               distinctio saepe laudantium nobis sed asperiores molestias magni
@@ -62,7 +62,7 @@ export default class CarouselBox extends Component {
             alt='nature'
           />
           <Carousel.Caption>
-            <h3 className='carousel_caption'>Lorem lorem lorem </h3>
+            <h1 className='carousel_caption'>Lorem lorem lorem </h1>
             <p className='carousel_caption'>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
               distinctio saepe laudantium nobis sed asperiores molestias magni
@@ -78,7 +78,7 @@ export default class CarouselBox extends Component {
             alt='nature'
           />
           <Carousel.Caption>
-            <h3 className='carousel_caption'>Lorem lorem lorem </h3>
+            <h1 className='carousel_caption'>Lorem lorem lorem </h1>
             <p className='carousel_caption'>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
               distinctio saepe laudantium nobis sed asperiores molestias magni

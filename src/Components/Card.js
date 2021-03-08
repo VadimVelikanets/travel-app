@@ -6,16 +6,17 @@ import "./../styles/Card.css";
 export default function Card() {
   return (
     <>
-      <a href='/country'>
-        <div>
-          <figure className='figure'>
+      <a href='/country' className='card'>
+        <div className='figure'>
+          <div className='figure_box'>
             <img
+              className='figure_image'
               src='https://cdn.tripzaza.com/ru/destinations/wp-content/uploads/2017/04/France-1-The-Eiffel-Tower-e1492754610997.jpg'
               alt='country'
             />
-            <figcaption className='figcaption'>France, Paris</figcaption>
-            {/* <h5>France, Paris</h5> */}
-          </figure>
+          </div>
+
+          <h5 className='figcaption'>France, Paris</h5>
         </div>
       </a>
       <Router>

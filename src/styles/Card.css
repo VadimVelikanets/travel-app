@@ -1,8 +1,40 @@
+.card {
+  margin: 10px auto;
+  max-width: 470px;
+  width: 100%;
+  border: none;
+  background-color: rgb(251 251 251);
+  padding: 8px;
+}
+.card:hover {
+  text-decoration: none;
+  box-shadow: rgb(0 0 0 / 15%) 0px 2px 8px;
+}
+.figure {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
 .figcaption {
   font-size: 25px;
   color: rgb(51, 50, 50);
+  border-radius: 5px;
 }
 .figcaption:hover {
   text-decoration: none;
   color: #ffa900;
+}
+.figure_box {
+  overflow: hidden;
+}
+.figure_image {
+  max-width: 470px;
+  border-radius: 5px;
+  max-height: 332px;
+  transition: all 1s ease-out;
+}
+
+.figure_image:hover {
+  border-radius: 5px;
+  transform: scale(1.1);
 }

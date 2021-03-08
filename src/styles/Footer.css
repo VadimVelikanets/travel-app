@@ -9,4 +9,5 @@
 }
 .link_box a:hover {
   color: #ffa900;
+  text-decoration: none;
 }

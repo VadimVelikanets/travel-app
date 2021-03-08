@@ -4,6 +4,7 @@ import { FormControl, Navbar, Container, Form, Button } from "react-bootstrap";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from "./../Pages/Home";
 import Country from "./../Pages/Country";
+import "./../styles/Header.css";
 
 export default function Header() {
   return (
@@ -30,14 +31,18 @@ export default function Header() {
             />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='responsive-navbar-nav' />
-          <Navbar.Collapse id='responsive-navbar-nav'>
+          <Navbar.Collapse id='responsive-navbar-nav' className=''>
             <Form inline>
               <FormControl
+                autoFocus
                 type='text'
                 placeholder='Enter country'
-                className='mr-sm-2'
+                className=' mr-sm-2'
               />
-              <Button variant='outline-info'>Search</Button>
+              <Button variant='outline-warning' className='btn_clean_form'>
+                &times;
+              </Button>
+              <Button variant='warning'>Search</Button>
               <Form.Control as='select' className='selecting_language ml-4'>
                 <option>EN</option>
                 <option>RU</option>
