@@ -1,0 +1,8 @@
+.figcaption {
+  font-size: 25px;
+  color: rgb(51, 50, 50);
+}
+.figcaption:hover {
+  text-decoration: none;
+  color: #ffa900;
+}

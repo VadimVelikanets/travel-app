@@ -1,0 +1,12 @@
+.footer {
+  padding: 30px 0;
+}
+.link_box {
+  margin-top: 20px;
+}
+.link_box a {
+  color: rgb(51, 50, 50);
+}
+.link_box a:hover {
+  color: #ffa900;
+}
