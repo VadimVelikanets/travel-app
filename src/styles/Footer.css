@@ -1,3 +1,6 @@
+.footer-container {
+  border-top: 1px solid rgb(218, 214, 214);
+}
 .footer {
   padding: 30px 0;
 }

@@ -32,7 +32,7 @@ export default class MainPage extends Component {
             <div className='container'>
               <h2 className='title'>gallery</h2>
             </div>
-            <div className='row row-50'>
+            <div className='row row-50 gallery_box'>
               <GalleryHome />
               <GalleryHome />
               <GalleryHome />
