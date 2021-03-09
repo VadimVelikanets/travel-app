@@ -1,0 +1,6 @@
+{
+  "port" : 5000,
+  "mongoUri": "mongodb+srv://root:123qwerty321@cluster0.6lnx4.mongodb.net/travel-app?retryWrites=true&w=majority",
+  "jwtSecret": "mern jwt key",
+  "baseUrl": "http://localhost:5000"
+}
