@@ -1,6 +1,7 @@
 {
   "port" : 5000,
-  "mongoUri": "mongodb+srv://root:123qwerty321@cluster0.6lnx4.mongodb.net/travel-app?retryWrites=true&w=majority",
+  "mongoUri2": "mongodb://root:123qwerty321@cluster0-shard-00-00.6lnx4.mongodb.net:27017,cluster0-shard-00-01.6lnx4.mongodb.net:27017,cluster0-shard-00-02.6lnx4.mongodb.net:27017/contries?ssl=true&replicaSet=atlas-gu9zng-shard-0&authSource=admin&retryWrites=true&w=majority",
+  "mongoUri": "mongodb://root:123qwerty321@cluster0-shard-00-00.qdrh7.mongodb.net:27017,cluster0-shard-00-01.qdrh7.mongodb.net:27017,cluster0-shard-00-02.qdrh7.mongodb.net:27017/travel?ssl=true&replicaSet=atlas-bunfq0-shard-0&authSource=admin&retryWrites=true&w=majority",
   "jwtSecret": "mern jwt key",
   "baseUrl": "http://localhost:5000"
 }
