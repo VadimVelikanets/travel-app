@@ -22,7 +22,7 @@ export default function Footer() {
           <a href='https://github.com/olgamartinchik' className='ml-3'>
             Olga
           </a>
-          <a href='https://github.com/olgamartinchik' className='ml-3'>
+          <a href='https://github.com/ebces' className='ml-3'>
             Pavel
           </a>
         </div>
