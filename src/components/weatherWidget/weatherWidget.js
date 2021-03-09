@@ -11,7 +11,7 @@ const pascalToMmHg = (pascal) => ((pascal / 133.3224) * 100).toFixed();
 
 function WeatherWidget(props) {
   const [weather, setWeather] = useState();
-  const [weatherIcon, setWeatherIcon] = useState();
+  const [weatherIcon, setWeatherIcon] = useState("01d");
   const [wind, setWind] = useState();
   const [humidity, setHumidity] = useState();
   const [pressure, setPressure] = useState();
