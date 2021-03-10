@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import CarouselBox from "./../Components/CarouselBox";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Card from "./../Components/Card";
+import Card from "../Components/Card";
 import "./../styles/Home.css";
 import GalleryHome from "./../Components/GalleryHome";
 
