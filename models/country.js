@@ -4,14 +4,24 @@ const schema = new Schema({
     lang: {
         EN:{
             country: String,
-            capitalCity: String
+            capitalCity: String,
+            description: String
         },
         RU:{
             country: String,
-            capitalCity: String
+            capitalCity: String,
+            description: String
+        },
+        DE:{
+            country: String,
+            capitalCity: String,
+            description: String
         }
     },
-    currency: String
+    currency: String,
+    videoUrl: String,
+    coordinates: Array,
+    countryImg: String
 })
 
 module.exports = model('countries', schema)
