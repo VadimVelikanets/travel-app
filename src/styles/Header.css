@@ -1,0 +1,25 @@
+.navbar-collapse {
+  justify-content: flex-end;
+}
+/* .form-inline {
+  position: relative;
+} */
+.btn_clean_form {
+  position: absolute;
+  left: 166px;
+}
+.input_country {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.selecting_language {
+  max-width: 68px;
+}
+.btn_group_enter {
+  max-width: 322px;
+  width: 100%;
+  display: flex;
+  margin-top: 5px;
+}
