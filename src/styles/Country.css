@@ -10,6 +10,9 @@
   justify-content: flex-start;
   align-items: flex-end;
 }
+.sidebar_right {
+  align-items: center;
+}
 .section_about {
   margin: 50px;
 }
