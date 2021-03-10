@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./weatherWidget.css";
+import "./WeatherWidget.css";
 
 const kelvinToCelsius = (kelvin) => {
   const temp = Math.trunc(kelvin - 273.15);
