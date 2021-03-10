@@ -1,20 +1,34 @@
 import React from "react";
+import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FormControl, Navbar, Container, Form, Button } from "react-bootstrap";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from "./../Pages/Home";
 import Country from "./../Pages/Country";
 import "./../styles/Header.css";
+import LogInModalWindow from "./logInModalWindow/LogInModalWindow";
+import RegisterModalWindow from "./registerModalWindow/RegisterModalWindow";
 
 export default function Header() {
+  const [isOpenLogIn, setOpenLogIn] = useState(false);
+  const [isOpenRegister, setOpenRegister] = useState(false);
+
+  const showModalLogIn = () => {
+    setOpenLogIn({ isOpenLogIn: true });
+  };
+
+  const showModalRegister = () => {
+    setOpenRegister({ isOpenRegister: true });
+  };
+
   return (
     <>
       <Navbar
-        fixed='top'
+        // fixed='top'
         collapseOnSelect
         expand='md'
         variant='light'
-        className='transparent justify-content-between'
+        className='transparent justify-content-between header'
       >
         <Container>
           <Navbar.Brand href='/'>
@@ -33,7 +47,6 @@ export default function Header() {
           <Navbar.Toggle aria-controls='responsive-navbar-nav' />
           <Navbar.Collapse id='responsive-navbar-nav' className=''>
             <Form inline>
-              {/* <div> */}
               <div className='input_country'>
                 <FormControl
                   autoFocus
@@ -44,7 +57,6 @@ export default function Header() {
                 <Button variant='outline-warning' className='btn_clean_form'>
                   &times;
                 </Button>
-                {/* </div> */}
 
                 <Button variant='warning'>Search</Button>
               </div>
@@ -55,10 +67,20 @@ export default function Header() {
                 <option>RU</option>
                 <option>FR</option>
               </Form.Control>
-              <Button variant='outline-warning' className='ml-3'>
+
+              <Button
+                variant='outline-warning'
+                className='ml-3'
+                onClick={showModalLogIn}
+              >
                 Log In
               </Button>
-              <Button variant='outline-danger' className='ml-3'>
+
+              <Button
+                variant='outline-danger'
+                className='ml-3'
+                onClick={showModalRegister}
+              >
                 Sing Up
               </Button>
             </div>
@@ -71,6 +93,14 @@ export default function Header() {
           <Route exact path='/country' component={Country} />
         </Switch>
       </Router>
+      {isOpenLogIn && (
+        <LogInModalWindow closeModalLigIn={() => setOpenLogIn(false)} />
+      )}
+      {isOpenRegister && (
+        <RegisterModalWindow
+          closeModalRegister={() => setOpenRegister(false)}
+        />
+      )}
     </>
   );
 }

@@ -1,7 +1,10 @@
 import React from "react";
+
 import "./../styles/Country.css";
 import { Container, Row, Col } from "react-bootstrap";
 import CarouselAttractions from "./../Components/CarouselAttractions";
+import CurrencyWidget from "./../Components/currencyWidget/CurrencyWidget";
+import WeatherWidget from "./../Components/weatherWidget/weatherWidget";
 
 export default function Country() {
   return (
@@ -54,10 +57,15 @@ export default function Country() {
                   ></iframe>
                 </div>
               </Col>
-              <Col md='3' className='sidebar'>
-                <div>Погода</div>
-                <div>Валюта</div>
-                <div>Дата/Время</div>
+              <Col md='3' className='sidebar sidebar_right'>
+                <div className='mt-4'>
+                  <WeatherWidget />
+                </div>
+
+                <div className='mt-4'>
+                  <CurrencyWidget />
+                </div>
+                <div className='mt-4'>Время</div>
               </Col>
             </Row>
           </Container>
