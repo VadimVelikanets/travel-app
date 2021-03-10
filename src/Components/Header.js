@@ -33,22 +33,35 @@ export default function Header() {
           <Navbar.Toggle aria-controls='responsive-navbar-nav' />
           <Navbar.Collapse id='responsive-navbar-nav' className=''>
             <Form inline>
-              <FormControl
-                autoFocus
-                type='text'
-                placeholder='Enter country'
-                className=' mr-sm-2'
-              />
-              <Button variant='outline-warning' className='btn_clean_form'>
-                &times;
-              </Button>
-              <Button variant='warning'>Search</Button>
+              {/* <div> */}
+              <div className='input_country'>
+                <FormControl
+                  autoFocus
+                  type='text'
+                  placeholder='Enter country'
+                  className=' mr-sm-2 input_country'
+                />
+                <Button variant='outline-warning' className='btn_clean_form'>
+                  &times;
+                </Button>
+                {/* </div> */}
+
+                <Button variant='warning'>Search</Button>
+              </div>
+            </Form>
+            <div className='btn_group_enter'>
               <Form.Control as='select' className='selecting_language ml-4'>
                 <option>EN</option>
                 <option>RU</option>
                 <option>FR</option>
               </Form.Control>
-            </Form>
+              <Button variant='outline-warning' className='ml-3'>
+                Log In
+              </Button>
+              <Button variant='outline-danger' className='ml-3'>
+                Sing Up
+              </Button>
+            </div>
           </Navbar.Collapse>
         </Container>
       </Navbar>
