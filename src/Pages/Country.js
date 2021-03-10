@@ -1,24 +1,25 @@
 import React from "react";
 import "./../styles/Country.css";
 import { Container, Row, Col } from "react-bootstrap";
-import CarouselAttractions from "./../Components/CarouselAttractions";
-
+import CarouselAttractions from "../Components/CarouselAttractions";
+import WeatherWidget from "../Components/weatherWidget/WeatherWidget";
+import CountryTime from "../Components/countryTime/CountryTime";
 export default function Country() {
   return (
     <div>
-      <main className='main'>
+      <main className="main">
         <section>
           <img
-            className='country_image'
-            src='https://cdn.tripzaza.com/ru/destinations/wp-content/uploads/2017/04/France-1-The-Eiffel-Tower-e1492754610997.jpg'
-            alt='country'
+            className="country_image"
+            src="https://cdn.tripzaza.com/ru/destinations/wp-content/uploads/2017/04/France-1-The-Eiffel-Tower-e1492754610997.jpg"
+            alt="country"
           />
         </section>
-        <section className='section_about'>
+        <section className="section_about">
           <Container>
             <Row>
-              <Col mg='4'>
-                <div className='description_country'>
+              <Col mg="4">
+                <div className="description_country">
                   <h2>France, Paris</h2>
                   <p>
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -36,25 +37,25 @@ export default function Country() {
                     blanditiis iste?
                   </p>
                 </div>
-                <div className='carousel_attractions'>
+                <div className="carousel_attractions">
                   <h2>Sights of France</h2>
                   <CarouselAttractions />
                 </div>
-                <div className='video'>
+                <div className="video">
                   <h2>Video</h2>
                 </div>
-                <div id='map'>
+                <div id="map">
                   <h2>Map</h2>
                   <iframe
-                    src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d83998.94722657723!2d2.2770201358009565!3d48.85883773930155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e1f06e2b70f%3A0x40b82c3688c9460!2z0J_QsNGA0LjQtiwg0KTRgNCw0L3RhtC40Y8!5e0!3m2!1sru!2sby!4v1615241211651!5m2!1sru!2sby'
-                    width='600'
-                    height='450'
-                    allowfullscreen=''
-                    loading='lazy'
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d83998.94722657723!2d2.2770201358009565!3d48.85883773930155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e1f06e2b70f%3A0x40b82c3688c9460!2z0J_QsNGA0LjQtiwg0KTRgNCw0L3RhtC40Y8!5e0!3m2!1sru!2sby!4v1615241211651!5m2!1sru!2sby"
+                    width="600"
+                    height="450"
+                    allowfullscreen=""
+                    loading="lazy"
                   ></iframe>
                 </div>
               </Col>
-              <Col md='3' className='sidebar'>
+              <Col md="3" className="sidebar">
                 <div>Погода</div>
                 <div>Валюта</div>
                 <div>Дата/Время</div>
