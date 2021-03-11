@@ -46,20 +46,7 @@ export default class MainPage extends Component {
           <section>
             <CarouselBox />
           </section>
-<<<<<<< HEAD:src/Pages/Home.js
-          <section className="section best_tours_section">
-            <div className="container">
-              <h2 className="title best_tours">our best tours</h2>
-              <div className="card_container">
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-=======
+
           <section className='section best_tours_section'>
             <div className='container'>
               <h2 className='title best_tours'>our best tours</h2>
@@ -68,8 +55,6 @@ export default class MainPage extends Component {
                 {countries.map(country => (
                     <Card linkId={country._id} countryImg={country.countryImg} country={country.lang.EN.country} key={country._id} capitalCity={country.lang.EN.capitalCity}/>
               ))}
-
->>>>>>> 14df2e0f0904c79f83c33be5a0fd707745eba9dd:client/src/Pages/Home.js
               </div>
             </div>
           </section>

@@ -51,27 +51,7 @@ export default function Header() {
               alt="logo"
             />
           </Navbar.Brand>
-<<<<<<< HEAD:src/Components/Header.js
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav" className="">
-            <Form inline>
-              <div className="input_country">
-                <FormControl
-                  autoFocus
-                  type="text"
-                  placeholder="Enter country"
-                  className=" mr-sm-2 input_country"
-                />
-                <Button variant="outline-warning" className="btn_clean_form">
-                  &times;
-                </Button>
 
-                <Button variant="warning">Search</Button>
-              </div>
-            </Form>
-            <div className="btn_group_enter">
-              <Form.Control as="select" className="selecting_language ml-4">
-=======
           <Navbar.Toggle aria-controls='responsive-navbar-nav' />
 
           <Navbar.Collapse id='responsive-navbar-nav' className=''>
@@ -95,7 +75,6 @@ export default function Header() {
 
             <div className='btn_group_enter'>
               <Form.Control as='select' className='selecting_language ml-4'>
->>>>>>> 14df2e0f0904c79f83c33be5a0fd707745eba9dd:client/src/Components/Header.js
                 <option>EN</option>
                 <option>RU</option>
                 <option>FR</option>
@@ -109,24 +88,6 @@ export default function Header() {
                     >
                       Log In
                     </Button>
-
-<<<<<<< HEAD:src/Components/Header.js
-              <Button
-                variant="outline-warning"
-                className="ml-3"
-                onClick={showModalLogIn}
-              >
-                Log In
-              </Button>
-
-              <Button
-                variant="outline-danger"
-                className="ml-3"
-                onClick={showModalRegister}
-              >
-                Sing Up
-              </Button>
-=======
                     <Button
                         variant='outline-danger'
                         className='ml-3'
@@ -143,20 +104,15 @@ export default function Header() {
                   </div>
 
               }
->>>>>>> 14df2e0f0904c79f83c33be5a0fd707745eba9dd:client/src/Components/Header.js
             </div>
           </Navbar.Collapse>
         </Container>
       </Navbar>
       <Router>
         <Switch>
-<<<<<<< HEAD:src/Components/Header.js
-          <Route exact path="/" component={Home} />
-          <Route exact path="/country" component={Country} />
-=======
+
           <Route exact path='/' component={Home} />
           <Route  path='/country/' component={Country} />
->>>>>>> 14df2e0f0904c79f83c33be5a0fd707745eba9dd:client/src/Components/Header.js
         </Switch>
       </Router>
       {isOpenLogIn && (
