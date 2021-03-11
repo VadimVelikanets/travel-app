@@ -20,7 +20,7 @@ const schema = new Schema({
     },
     currency: String,
     videoUrl: String,
-    coordinates: Array,
+    mapUrl: String,
     countryImg: String
 })
 
