@@ -1,5 +1,7 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import {authContext} from '../context/authContext'
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FormControl, Navbar, Container, Form, Button } from "react-bootstrap";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -12,7 +14,7 @@ import RegisterModalWindow from "./registerModalWindow/RegisterModalWindow";
 export default function Header() {
   const [isOpenLogIn, setOpenLogIn] = useState(false);
   const [isOpenRegister, setOpenRegister] = useState(false);
-
+  const auth = useContext(authContext)
   const showModalLogIn = () => {
     setOpenLogIn({ isOpenLogIn: true });
   };
@@ -20,7 +22,12 @@ export default function Header() {
   const showModalRegister = () => {
     setOpenRegister({ isOpenRegister: true });
   };
+  const logout = (e) =>{
+    e.preventDefault();
+    auth.logout()
+    window.location.reload();
 
+  }
   return (
     <>
       <Navbar
@@ -45,44 +52,58 @@ export default function Header() {
             />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='responsive-navbar-nav' />
-          <Navbar.Collapse id='responsive-navbar-nav' className=''>
-            <Form inline>
-              <div className='input_country'>
-                <FormControl
-                  autoFocus
-                  type='text'
-                  placeholder='Enter country'
-                  className=' mr-sm-2 input_country'
-                />
-                <Button variant='outline-warning' className='btn_clean_form'>
-                  &times;
-                </Button>
 
-                <Button variant='warning'>Search</Button>
+          <Navbar.Collapse id='responsive-navbar-nav' className=''>
+
+              <Form inline>
+              <div className='input_country'>
+              <FormControl
+              autoFocus
+              type='text'
+              placeholder='Enter country'
+              className=' mr-sm-2 input_country'
+              />
+              <Button variant='outline-warning' className='btn_clean_form'>
+              &times;
+              </Button>
+
+              <Button variant='warning'>Search</Button>
               </div>
-            </Form>
+              </Form>
+
+
             <div className='btn_group_enter'>
               <Form.Control as='select' className='selecting_language ml-4'>
                 <option>EN</option>
                 <option>RU</option>
                 <option>FR</option>
               </Form.Control>
+              {!localStorage.getItem('userData') ?
+                  <div>
+                    <Button
+                        variant='outline-warning'
+                        className='ml-3'
+                        onClick={showModalLogIn}
+                    >
+                      Log In
+                    </Button>
 
-              <Button
-                variant='outline-warning'
-                className='ml-3'
-                onClick={showModalLogIn}
-              >
-                Log In
-              </Button>
+                    <Button
+                        variant='outline-danger'
+                        className='ml-3'
+                        onClick={showModalRegister}
+                    >
+                      Sing Up
+                    </Button>
+                  </div>
 
-              <Button
-                variant='outline-danger'
-                className='ml-3'
-                onClick={showModalRegister}
-              >
-                Sing Up
-              </Button>
+                  :
+                  <div className='header-user'>
+                    <span>{JSON.parse(localStorage.getItem('userData')).email}</span>
+                    <a href="" onClick={logout}>Logout</a>
+                  </div>
+
+              }
             </div>
           </Navbar.Collapse>
         </Container>

@@ -7,8 +7,10 @@ import CurrencyWidget from "./../Components/currencyWidget/CurrencyWidget";
 import WeatherWidget from "./../Components/weatherWidget/weatherWidget";
 
 export default function Country(props) {
-  const [country, setCountry] = useState(null)
-  useEffect(() => {
+
+
+    const [country, setCountry] = useState(null)
+    useEffect(() => {
       const countryId = window.location.pathname
       fetch(`/api${countryId}`)
           .then(res => res.json())
@@ -43,7 +45,6 @@ export default function Country(props) {
                   <Row>
                     <Col mg='4'>
                       <div className='description_country'>
-
                         <h2>{country.lang.EN.country}, {country.lang.EN.capitalCity}</h2>
                         <p>
                           {country.lang.EN.description}
@@ -55,7 +56,7 @@ export default function Country(props) {
                       </div>
                       <div className='video'>
                         <h2>Video</h2>
-                        <iframe width="560" height="315"
+                        <iframe width="847" height="315"
                                 src={country.videoUrl}
                                 frameBorder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -65,7 +66,7 @@ export default function Country(props) {
                         <h2>Map</h2>
                         <iframe
                             src={country.mapUrl}
-                            width='600'
+                            width='847'
                             height='450'
                             allowFullScreen=''
                             loading='lazy'
