@@ -98,7 +98,7 @@ export default function Header() {
                   </div>
 
                   :
-                  <div>
+                  <div className='header-user'>
                     <span>{JSON.parse(localStorage.getItem('userData')).email}</span>
                     <a href="" onClick={logout}>Logout</a>
                   </div>
