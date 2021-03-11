@@ -7,8 +7,10 @@ import CurrencyWidget from "./../Components/currencyWidget/CurrencyWidget";
 import WeatherWidget from "./../Components/weatherWidget/weatherWidget";
 
 export default function Country(props) {
-  const [country, setCountry] = useState(null)
-  useEffect(() => {
+
+
+    const [country, setCountry] = useState(null)
+    useEffect(() => {
       const countryId = window.location.pathname
       fetch(`/api${countryId}`)
           .then(res => res.json())
@@ -43,7 +45,6 @@ export default function Country(props) {
                   <Row>
                     <Col mg='4'>
                       <div className='description_country'>
-
                         <h2>{country.lang.EN.country}, {country.lang.EN.capitalCity}</h2>
                         <p>
                           {country.lang.EN.description}
