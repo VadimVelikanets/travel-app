@@ -5,7 +5,7 @@ import { Container, Row, Col } from "react-bootstrap";
 
 import CarouselAttractions from "./../Components/CarouselAttractions";
 import CurrencyWidget from "./../Components/currencyWidget/CurrencyWidget";
-import WeatherWidget from "./../Components/weatherWidget/weatherWidget";
+import WeatherWidget from "./../Components/weatherWidget/WeatherWidget";
 
 export default function Country() {
   return (
