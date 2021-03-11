@@ -5,6 +5,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import CarouselAttractions from "./../Components/CarouselAttractions";
 import CurrencyWidget from "./../Components/currencyWidget/CurrencyWidget";
 import WeatherWidget from "./../Components/weatherWidget/weatherWidget";
+import CountryTime from '../Components/countryTime/CountryTime'
 
 export default function Country(props) {
 
@@ -79,9 +80,14 @@ export default function Country(props) {
                       </div>
 
                       <div className='mt-4'>
-                        <CurrencyWidget/>
+                        <CurrencyWidget currency='BYN' />
                       </div>
-                      <div className='mt-4'>Время</div>
+                      <div className='mt-4'>
+                        <CountryTime 
+                          lat='53.89765257727578' 
+                          lon='27.515932469510584'
+                          cityName='Minsk' />
+                      </div>
                     </Col>
                   </Row>
 

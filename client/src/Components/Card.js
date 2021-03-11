@@ -1,5 +1,5 @@
 import React from "react";
-import Country from "./../Pages/Country";
+import Country from "../Pages/Country";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./../styles/Card.css";
 
@@ -7,7 +7,6 @@ export default function Card(props) {
     const link = '/country/' + props.linkId
   return (
     <>
-
       <Link to={link} className='card'>
         <div className='figure'>
           <div className='figure_box'>
@@ -17,7 +16,6 @@ export default function Card(props) {
               alt='country'
             />
           </div>
-
           <h5 className='figcaption'>{props.country}, {props.capitalCity}</h5>
         </div>
       </Link>
