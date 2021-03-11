@@ -18,7 +18,7 @@ export default function Country() {
           />
         </section>
         <section className='section_about'>
-          <Container>
+          <Container fluid>
             <Row>
               <Col mg='4'>
                 <div className='description_country'>
@@ -57,15 +57,15 @@ export default function Country() {
                   ></iframe>
                 </div>
               </Col>
-              <Col md='3' className='sidebar sidebar_right'>
-                <div className='mt-4'>
+              <Col md='4' className='sidebar sidebar_right'>
+                <div className='mt-4 widget_weather'>
                   <WeatherWidget />
                 </div>
 
-                <div className='mt-4'>
+                <div className='mt-4 widget_currency'>
                   <CurrencyWidget />
                 </div>
-                <div className='mt-4'>Время</div>
+                <div className='mt-4 widget_time'>Время</div>
               </Col>
             </Row>
           </Container>

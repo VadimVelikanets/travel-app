@@ -12,6 +12,9 @@
   align-items: center;
   justify-content: center;
 }
+.input {
+  box-shadow: rgb(0 0 0 / 15%) 0px 2px 8px;
+}
 .selecting_language {
   max-width: 68px;
 }
@@ -20,4 +23,9 @@
   width: 100%;
   display: flex;
   margin-top: 5px;
+}
+.log_in,
+.sing_up,
+.search {
+  box-shadow: rgb(0 0 0 / 15%) 0px 2px 8px;
 }

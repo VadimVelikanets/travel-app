@@ -28,7 +28,7 @@ export default function Header() {
         collapseOnSelect
         expand='md'
         variant='light'
-        className='transparent justify-content-between header'
+        className=' justify-content-between header'
       >
         <Container>
           <Navbar.Brand href='/'>
@@ -52,13 +52,15 @@ export default function Header() {
                   autoFocus
                   type='text'
                   placeholder='Enter country'
-                  className=' mr-sm-2 input_country'
+                  className=' mr-sm-2 input'
                 />
                 <Button variant='outline-warning' className='btn_clean_form'>
                   &times;
                 </Button>
 
-                <Button variant='warning'>Search</Button>
+                <Button variant='warning' className='search'>
+                  Search
+                </Button>
               </div>
             </Form>
             <div className='btn_group_enter'>
@@ -70,7 +72,7 @@ export default function Header() {
 
               <Button
                 variant='outline-warning'
-                className='ml-3'
+                className='ml-3 log_in'
                 onClick={showModalLogIn}
               >
                 Log In
@@ -78,7 +80,7 @@ export default function Header() {
 
               <Button
                 variant='outline-danger'
-                className='ml-3'
+                className='ml-3 sing_up'
                 onClick={showModalRegister}
               >
                 Sing Up

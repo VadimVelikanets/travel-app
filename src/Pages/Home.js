@@ -29,7 +29,7 @@ export default class MainPage extends Component {
             </div>
           </section>
           <section className='section gallery_section'>
-            <div className='container'>
+            <div className='container fluid'>
               <h2 className='title'>gallery</h2>
             </div>
             <div className='row row-50 gallery_box'>
