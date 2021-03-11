@@ -1,0 +1,41 @@
+.weather-widget {
+  font-family: sans-serif;
+  border: 2px solid #000000;
+  background-color: #0000001e;
+  border-radius: 10px;
+  max-width: 300px;
+  margin: 0 auto;
+  box-shadow: 0 0 10px #505050;
+  padding-bottom: 10px;
+}
+
+.weather-widget__cityName {
+  margin-bottom: 0;
+}
+
+.weather-widget__info {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.weather-widget__degree {
+  font-size: 3.5em;
+  font-weight: bold;
+}
+
+.weather-widget__additional-info {
+  display: flex;
+  justify-content: space-around;
+}
+
+.weather-widget__additional-info-element {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.weather-widget__pictures {
+  width: 30px;
+}

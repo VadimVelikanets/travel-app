@@ -1,0 +1,25 @@
+.image_box {
+  max-width: 640px;
+  height: auto;
+  position: relative;
+  border-radius: 0;
+  overflow: hidden;
+  padding: 0;
+}
+.image_box .figure_image {
+  border-radius: 0;
+  max-width: 640px;
+  width: 100%;
+}
+
+.showplaces_title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.showplaces_title h3 {
+  width: 100%;
+  color: #fff;
+  text-shadow: 0.1em 0.1em 0.2em black;
+}

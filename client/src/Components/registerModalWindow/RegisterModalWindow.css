@@ -1,0 +1,70 @@
+.registerModalWindow {
+  font-family: sans-serif;
+  border: 2px solid #000000;
+  background-color: #0000001e;
+  border-radius: 10px;
+  width: 300px;
+  margin: 0 auto;
+  box-shadow: 0 0 10px #505050;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  position: fixed;
+  top: 225px;
+  right: 20px;
+  z-index: 1001;
+  /* background-color: #0000008c; */
+}
+.btnClose {
+  position: absolute;
+  cursor: pointer;
+  border: 2px solid rgb(238, 236, 236);
+  background-color: grey;
+  font-size: 20px;
+  right: 0;
+  top: 0;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  margin: 0;
+}
+.btnClose:hover {
+  background-color: rgb(247, 245, 245);
+  border: 2px solid grey;
+}
+
+.registerModalWindow__title {
+  margin: 0;
+  color: #fff;
+}
+
+.registerModalWindow__input {
+  margin: 10px 0;
+  height: 40px;
+  font-size: 1.3em;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.registerModalWindow__input:focus,
+.registerModalWindow__submit:focus {
+  outline: none;
+}
+
+.registerModalWindow__submit {
+  background-color: #ffd900;
+  border: 0;
+  width: 150px;
+  height: 50px;
+  border-radius: 10px;
+  transition: 0.5s;
+  font-size: 1.5em;
+}
+
+.registerModalWindow__submit:hover {
+  cursor: pointer;
+  background-color: #ff9900cb;
+}
