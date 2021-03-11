@@ -11,7 +11,7 @@ import "./../styles/Header.css";
 import LogInModalWindow from "./logInModalWindow/LogInModalWindow";
 import RegisterModalWindow from "./registerModalWindow/RegisterModalWindow";
 
-export default function Header() {
+export default function Header(props) {
   const [isOpenLogIn, setOpenLogIn] = useState(false);
   const [isOpenRegister, setOpenRegister] = useState(false);
   const auth = useContext(authContext)
@@ -27,6 +27,9 @@ export default function Header() {
     auth.logout()
     window.location.reload();
 
+  }
+  const searchCountry = (e) =>{
+      console.log(e.target.value)
   }
   return (
     <>
@@ -62,6 +65,7 @@ export default function Header() {
               autoFocus
               type='text'
               placeholder='Enter country'
+              onChange={searchCountry}
               className=' mr-sm-2 input_country'
               />
               <Button variant='outline-warning' className='btn_clean_form'>
@@ -111,7 +115,9 @@ export default function Header() {
       <Router>
         <Switch>
 
-          <Route exact path='/' component={Home} />
+          <Route exact path='/'  >
+              <Home countries={props.countries}/>
+          </Route>
           <Route  path='/country/' component={Country} />
         </Switch>
       </Router>
