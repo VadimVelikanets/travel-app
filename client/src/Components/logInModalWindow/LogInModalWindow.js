@@ -11,17 +11,17 @@ function LogInModalWindow(props) {
     const {login, logout, userId, token, email} = useAuth()
     const message = useMessage()
     const {loading, request, errors, clearError} = useHttp()
+    const [errorMessage, setErrorMessage] = useState('')
     const [form, setForm] = useState({
         email: '', password: ''
     })
     const error ='';
     useEffect(() => {
-        //  console.log(errors)
         message(errors)
-        //  clearError()
     }, [errors, message])
     const changeHandler = event => {
         setForm({ ...form, [event.target.name]: event.target.value })
+        setErrorMessage('')
     }
 
     const loginHandler = async () => {
@@ -31,6 +31,7 @@ function LogInModalWindow(props) {
             window.location.reload();
         } catch (e) {
             console.log(e)
+            setErrorMessage('Incorrect login data!')
             // alert(e)
         }
     }
@@ -43,6 +44,7 @@ function LogInModalWindow(props) {
       <input onChange={changeHandler} name="email" type="email" className='logInModalWindow__input' placeholder='Email'></input>
       <input onChange={changeHandler} name="password" className='logInModalWindow__input' type="password" placeholder='Password'></input>
       <button onClick={loginHandler} className='logInModalWindow__submit'>LogIn</button>
+      <span className='error-message'>{errorMessage}</span>
     </div>
   );
 }

@@ -16,6 +16,8 @@ function RegisterModalWindow(props) {
     const [form, setForm] = useState({
         email: '', password: ''
     })
+    const [successMessage, setSuccessMessage] = useState('')
+    const [errorMessage, setErrorMessage] = useState('')
     const error ='';
     useEffect(() => {
         //  console.log(errors)
@@ -24,15 +26,19 @@ function RegisterModalWindow(props) {
     }, [errors, message])
     const changeHandler = event => {
         setForm({ ...form, [event.target.name]: event.target.value })
+        setErrorMessage('')
     }
 
     const registerHandler = async () => {
         try {
             const data = await request('/api/auth/register', 'POST', {...form})
             message(data.message)
+            setSuccessMessage('Your profile created!')
+            setTimeout(window.location.reload(), 1500)
+
         } catch (e) {
             console.log(e)
-            // alert(e)
+            setErrorMessage('Registration Error!')
         }
     }
 
@@ -58,6 +64,8 @@ function RegisterModalWindow(props) {
         placeholder='Password'
       ></input>
       <button onClick={registerHandler} className='registerModalWindow__submit'>Register</button>
+        <span className='success-message'>{successMessage}</span>
+        <span className='error-message'>{errorMessage}</span>
     </div>
   );
 }

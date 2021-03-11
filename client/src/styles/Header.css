@@ -35,3 +35,9 @@
   opacity: 0.5;
   text-decoration: none;
 }
+.success-message{
+  color: greenyellow;
+}
+.error-message{
+  color: red;
+}
