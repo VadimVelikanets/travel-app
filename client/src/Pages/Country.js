@@ -56,7 +56,7 @@ export default function Country(props) {
                       </div>
                       <div className='video'>
                         <h2>Video</h2>
-                        <iframe width="560" height="315"
+                        <iframe width="847" height="315"
                                 src={country.videoUrl}
                                 frameBorder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -66,7 +66,7 @@ export default function Country(props) {
                         <h2>Map</h2>
                         <iframe
                             src={country.mapUrl}
-                            width='600'
+                            width='847'
                             height='450'
                             allowFullScreen=''
                             loading='lazy'
