@@ -11,6 +11,8 @@
 
 .weather-widget__cityName {
   margin-bottom: 0;
+  text-align: center;
+  padding-top: 10px;
 }
 
 .weather-widget__info {

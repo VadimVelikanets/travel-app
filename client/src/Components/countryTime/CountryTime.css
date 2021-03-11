@@ -1,0 +1,18 @@
+.time-info {
+    border: 2px solid #000000;
+    border-radius: 10px;
+    background-color: #0000001e;
+    padding: 10px;
+}
+
+.time-info__time {
+    font-size: 3em;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+.time-info__city-name {
+    font-size: 1em;
+    text-align: center;
+    margin: 0;
+}
