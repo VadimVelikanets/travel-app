@@ -29,7 +29,11 @@ export default function Header(props) {
 
   }
   const searchCountry = (e) =>{
-      console.log(e.target.value)
+
+      const searchWord = e.target.value
+      props.countries.filter(country => country.lang.EN.country.toLocaleLowerCase().includes(searchWord.toLocaleLowerCase())).map(searchResult => (
+          console.log(searchResult)
+      ))
   }
   return (
     <>

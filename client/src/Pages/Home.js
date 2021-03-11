@@ -20,7 +20,6 @@ export default class MainPage extends Component {
           <section>
             <CarouselBox />
           </section>
-
           <section className='section best_tours_section'>
             <div className='container'>
               <h2 className='title best_tours'>our best tours</h2>
