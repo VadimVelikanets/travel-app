@@ -21,3 +21,23 @@
   display: flex;
   margin-top: 5px;
 }
+.header-user{
+  line-height: 35px;
+}
+.header-user span{
+  margin: 0 10px;
+  font-weight: bold;
+}
+.header-user a{
+  transition: 0.5s all ease;
+}
+.header-user a:hover{
+  opacity: 0.5;
+  text-decoration: none;
+}
+.success-message{
+  color: greenyellow;
+}
+.error-message{
+  color: red;
+}

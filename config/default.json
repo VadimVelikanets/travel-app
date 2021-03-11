@@ -1,0 +1,6 @@
+{
+  "port" : 5000,
+  "mongoUri": "mongodb://root:123qwerty321@cluster0-shard-00-00.qdrh7.mongodb.net:27017,cluster0-shard-00-01.qdrh7.mongodb.net:27017,cluster0-shard-00-02.qdrh7.mongodb.net:27017/travel?ssl=true&replicaSet=atlas-bunfq0-shard-0&authSource=admin&retryWrites=true&w=majority",
+  "jwtSecret": "mern jwt key",
+  "baseUrl": "http://localhost:5000"
+}
