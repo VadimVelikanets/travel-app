@@ -1,0 +1,28 @@
+.section {
+  margin-top: 60px;
+}
+.title {
+  text-transform: uppercase;
+  text-align: center;
+  color: #ffa900;
+}
+.card_container {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.gallery_section {
+  background-color: #f7f7f7;
+  fill: #f7f7f7;
+}
+.gallery_section .container {
+  padding: 60px;
+}
+
+.gallery_box {
+  justify-content: center;
+  padding-bottom: 80px;
+}
