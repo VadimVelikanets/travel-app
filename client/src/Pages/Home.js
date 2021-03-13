@@ -9,44 +9,17 @@ import GalleryHome from "./../Components/GalleryHome";
 export default class MainPage extends Component {
   constructor(props){
     super(props);
-    this.state = {
-      countries: [],
-      error: null,
-      isLoaded: false,
-      lang: 'EN'
-    };
-
 
   }
 
-  componentDidMount() {
-    fetch("/api/country")
-        .then(res => res.json())
-        .then(
-            (result) => {
-              this.setState({
-                countries: result
-              });
-            },
-            // Примечание: важно обрабатывать ошибки именно здесь, а не в блоке catch(),
-            // чтобы не перехватывать исключения из ошибок в самих компонентах.
-            (error) => {
-              this.setState({
-                isLoaded: true,
-                error
-              });
-            }
-        )
-  }
   render() {
-    const {countries } = this.state;
+    const countries  = this.props.countries;
     return (
       <>
         <main>
           <section>
             <CarouselBox />
           </section>
-
           <section className='section best_tours_section'>
             <div className='container'>
               <h2 className='title best_tours'>our best tours</h2>
