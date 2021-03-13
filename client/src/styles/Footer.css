@@ -1,16 +1,16 @@
 .footer-container {
-  border-top: 1px solid rgb(218, 214, 214);
+    border-top: 1px solid rgb(218, 214, 214);
 }
 .footer {
-  padding: 30px 0;
+    padding: 30px 0;
 }
 .link_box {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 .link_box a {
-  color: rgb(51, 50, 50);
+    color: rgb(51, 50, 50);
 }
 .link_box a:hover {
-  color: #ffa900;
-  text-decoration: none;
+    color: #ffa900;
+    text-decoration: none;
 }
