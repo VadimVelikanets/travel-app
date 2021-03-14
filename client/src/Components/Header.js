@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useContext } from "react";
+import { useState, useContext,  useCallback  } from "react";
 import {authContext} from '../context/authContext'
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -44,6 +44,12 @@ export default function Header(props) {
           setTheArray(searchArray => [...searchArray, searchResult])
       ))
   }
+  //Смена языка
+
+  const changeLang = (e )=> {
+      props.changeLang(e.target.value)
+       console.log('lang -',e.target.value)
+    }
   return (
     <>
       <Navbar
@@ -92,10 +98,11 @@ export default function Header(props) {
 
 
             <div className='btn_group_enter'>
-              <Form.Control as='select' className='selecting_language ml-4'>
+              <Form.Control as='select' className='selecting_language ml-4' onChange={changeLang}>
+
                 <option>EN</option>
                 <option>RU</option>
-                <option>FR</option>
+                <option>DE</option>
               </Form.Control>
               {!localStorage.getItem('userData') ?
                   <div>
@@ -130,9 +137,11 @@ export default function Header(props) {
         <Switch>
 
           <Route exact path='/'  >
-              <Home countries={props.countries}/>
+              <Home lang={props.lang} countries={props.countries}/>
           </Route>
-          <Route  path='/country/' component={Country} />
+          <Route  path='/country/'>
+            <Country lang={props.lang}/>
+          </Route>
         </Switch>
       </Router>
       {isOpenLogIn && (
