@@ -10,10 +10,14 @@ import Country from "../Pages/Country";
 import "./../styles/Header.css";
 import LogInModalWindow from "./logInModalWindow/LogInModalWindow";
 import RegisterModalWindow from "./registerModalWindow/RegisterModalWindow";
+import SearchResult from './SearchResult';
 
 export default function Header(props) {
   const [isOpenLogIn, setOpenLogIn] = useState(false);
   const [isOpenRegister, setOpenRegister] = useState(false);
+
+
+
   const auth = useContext(authContext)
   const showModalLogIn = () => {
     setOpenLogIn({ isOpenLogIn: true });
@@ -28,13 +32,16 @@ export default function Header(props) {
     window.location.reload();
 
   }
+  //Модуль поиска
+  const [searchValue, setSearchValue] = useState('');
+  const [searchArray, setTheArray] = useState([]);
   const searchCountry = (e) =>{
-      const searchArray = []
+       setTheArray([])
       const searchWord = e.target.value
+      setSearchValue(searchWord)
       props.countries.filter(country => country.lang.EN.country.toLocaleLowerCase().includes(searchWord.toLocaleLowerCase())).map(searchResult => (
 
-          searchArray.push(searchResult),
-        console.log(searchArray)
+          setTheArray(searchArray => [...searchArray, searchResult])
       ))
   }
   return (
@@ -74,13 +81,14 @@ export default function Header(props) {
               onChange={searchCountry}
               className=' mr-sm-2 input_country'
               />
-              <Button variant='outline-warning' className='btn_clean_form'>
-              &times;
-              </Button>
 
-              <Button variant='warning'>Search</Button>
               </div>
+
               </Form>
+              {searchValue != '' ?
+               <SearchResult searchArray={searchArray}/> :
+               ""
+              }
 
 
             <div className='btn_group_enter'>
