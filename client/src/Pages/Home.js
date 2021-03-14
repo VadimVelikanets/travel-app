@@ -14,6 +14,8 @@ export default class MainPage extends Component {
 
   render() {
     const countries  = this.props.countries;
+    const lang  = this.props.lang;
+    console.log(lang)
     return (
       <>
         <main>
@@ -25,9 +27,17 @@ export default class MainPage extends Component {
               <h2 className='title best_tours'>our best tours</h2>
               <div className='card_container'>
 
-                {countries.map(country => (
-                    <Card linkId={country._id} countryImg={country.countryImg} country={country.lang.EN.country} key={country._id} capitalCity={country.lang.EN.capitalCity}/>
-              ))}
+
+              {countries.map((country, index) => {
+                   if(lang == 'EN') {
+                        return    <Card linkId={country._id} countryImg={country.countryImg} country={country.lang.EN.country} key={country._id} capitalCity={country.lang.EN.capitalCity}/>
+                        } else if(lang == 'RU'){
+                        return    <Card linkId={country._id} countryImg={country.countryImg} country={country.lang.RU.country} key={country._id} capitalCity={country.lang.RU.capitalCity}/>
+                        } else if(lang == 'DE'){
+                        return    <Card linkId={country._id} countryImg={country.countryImg} country={country.lang.DE.country} key={country._id} capitalCity={country.lang.DE.capitalCity}/>
+                   }
+
+              })}
               </div>
             </div>
           </section>

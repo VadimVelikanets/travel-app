@@ -28,7 +28,7 @@ export default function Country(props) {
 
 
   },[]);
-  console.log(country)
+
   return (
     <div>
       <main className='main'>

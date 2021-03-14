@@ -12,6 +12,10 @@ function App() {
     const [isLoaded, setLoaded] = useState(false)
     const [lang, setLang] = useState('EN')
 
+    const changeLang = (lang) =>{
+        setLang(lang)
+
+      }
     useEffect(() => {
         fetch("/api/country")
             .then(res => res.json())
@@ -33,7 +37,7 @@ function App() {
         <authContext.Provider value={{
             login, logout, token, userId, isAuth, email
         }}>
-          <Header countries={countries}/>
+          <Header changeLang={changeLang} lang={lang} countries={countries}/>
           <Footer />
         </authContext.Provider>
     </>

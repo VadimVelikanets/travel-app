@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useContext } from "react";
+import { useState, useContext,  useCallback  } from "react";
 import {authContext} from '../context/authContext'
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -10,10 +10,14 @@ import Country from "../Pages/Country";
 import "./../styles/Header.css";
 import LogInModalWindow from "./logInModalWindow/LogInModalWindow";
 import RegisterModalWindow from "./registerModalWindow/RegisterModalWindow";
+import SearchResult from './SearchResult';
 
 export default function Header(props) {
   const [isOpenLogIn, setOpenLogIn] = useState(false);
   const [isOpenRegister, setOpenRegister] = useState(false);
+
+
+
   const auth = useContext(authContext)
   const showModalLogIn = () => {
     setOpenLogIn({ isOpenLogIn: true });
@@ -28,13 +32,24 @@ export default function Header(props) {
     window.location.reload();
 
   }
+  //Модуль поиска
+  const [searchValue, setSearchValue] = useState('');
+  const [searchArray, setTheArray] = useState([]);
   const searchCountry = (e) =>{
-
+       setTheArray([])
       const searchWord = e.target.value
+      setSearchValue(searchWord)
       props.countries.filter(country => country.lang.EN.country.toLocaleLowerCase().includes(searchWord.toLocaleLowerCase())).map(searchResult => (
-          console.log(searchResult)
+
+          setTheArray(searchArray => [...searchArray, searchResult])
       ))
   }
+  //Смена языка
+
+  const changeLang = (e )=> {
+      props.changeLang(e.target.value)
+       console.log('lang -',e.target.value)
+    }
   return (
     <>
       <Navbar
@@ -72,20 +87,22 @@ export default function Header(props) {
               onChange={searchCountry}
               className=' mr-sm-2 input_country'
               />
-              <Button variant='outline-warning' className='btn_clean_form'>
-              &times;
-              </Button>
 
-              <Button variant='warning'>Search</Button>
               </div>
+
               </Form>
+              {searchValue != '' ?
+               <SearchResult searchArray={searchArray}/> :
+               ""
+              }
 
 
             <div className='btn_group_enter'>
-              <Form.Control as='select' className='selecting_language ml-4'>
+              <Form.Control as='select' className='selecting_language ml-4' onChange={changeLang}>
+
                 <option>EN</option>
                 <option>RU</option>
-                <option>FR</option>
+                <option>DE</option>
               </Form.Control>
               {!localStorage.getItem('userData') ?
                   <div>
@@ -120,9 +137,11 @@ export default function Header(props) {
         <Switch>
 
           <Route exact path='/'  >
-              <Home countries={props.countries}/>
+              <Home lang={props.lang} countries={props.countries}/>
           </Route>
-          <Route  path='/country/' component={Country} />
+          <Route  path='/country/'>
+            <Country lang={props.lang}/>
+          </Route>
         </Switch>
       </Router>
       {isOpenLogIn && (
