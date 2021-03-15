@@ -1,6 +1,6 @@
 import React from "react";
-import { useState, useContext } from "react";
-import { authContext } from "../../context/authContext";
+import { useState } from "react";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FormControl, Navbar, Container, Form, Button } from "react-bootstrap";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -102,7 +102,7 @@ export default function Header(props) {
                   <FormControl
                     autoFocus
                     type='text'
-                    placeholder='Enter country'
+                    placeholder={state.lang.enterCountry}
                     onChange={searchCountry}
                     className=' mr-sm-2 input'
                     value={searchValue}
@@ -142,14 +142,14 @@ export default function Header(props) {
                     className='ml-3 log_in'
                     onClick={showModalLogIn}
                   >
-                    Log In
+                    {state.lang.LogIn}
                   </Button>
                   <Button
                     variant='outline-danger'
                     className='ml-3 sing_up'
                     onClick={showModalRegister}
                   >
-                    Sing Up
+                    {state.lang.SingUp}
                   </Button>
                 </div>
               ) : (
@@ -158,7 +158,7 @@ export default function Header(props) {
                     {JSON.parse(localStorage.getItem("userData")).email}
                   </span>
                   <a href='' onClick={logoutUser}>
-                    Logout
+                    {state.lang.LogOut}
                   </a>
                 </div>
               )}

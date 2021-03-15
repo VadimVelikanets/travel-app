@@ -4,17 +4,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "../../Components/card/Card";
 import "./Home.css";
 import GalleryHome from "../../Components/galleryHome/GalleryHome";
+import { useStore } from '../../redux/store';
 
-
-export default class MainPage extends Component {
-  constructor(props){
-    super(props);
-
-  }
-
-  render() {
-    const countries  = this.props.countries;
-    const lang  = this.props.lang;
+const MainPage = (props) => {
+    const [state] = useStore();
+    const countries  = props.countries;
+    const lang  = props.lang;
     console.log(lang)
     return (
         <>
@@ -24,7 +19,7 @@ export default class MainPage extends Component {
             </section>
             <section className='section best_tours_section'>
               <div className='container'>
-                <h2 className='title best_tours'>our best tours</h2>
+                <h2 className='title best_tours'>{state.lang.ourBestTour}</h2>
                 <div className='card_container'>
 
 
@@ -57,5 +52,6 @@ export default class MainPage extends Component {
           </main>
         </>
     );
-  }
 }
+
+export default MainPage;

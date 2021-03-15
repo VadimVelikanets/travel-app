@@ -9,10 +9,10 @@ import CountryTime from "../../Components/countryTime/CountryTime";
 import StarRatingEditable from "./../../Components//starRating/StarRatingEditable";
 import StarRatingNonEditable from "./../../Components//starRating/StarRatingNonEditable";
 import ScrollToTop from "../../Components/scrollToTop/ScrollToTop";
-
+import { useStore } from '../../redux/store';
 export default function Country(props) {
   const [country, setCountry] = useState(null);
-
+  const [state] = useStore();
   useEffect(() => {
     const countryId = window.location.pathname;
     fetch(`/api${countryId}`)
@@ -21,8 +21,6 @@ export default function Country(props) {
         (result) => {
           setCountry(result);
         },
-        // Примечание: важно обрабатывать ошибки именно здесь, а не в блоке catch(),
-        // чтобы не перехватывать исключения из ошибок в самих компонентах.
         (error) => {
           console.log(error);
         }
@@ -63,11 +61,11 @@ export default function Country(props) {
                       <p>{country.lang.EN.description}</p>
                     </div>
                     <div className='carousel_attractions'>
-                      <h2>Sights of {country.lang.EN.country}</h2>
+                      <h2>{state.lang.SightsOf} {country.lang.EN.country}</h2>
                       <CarouselAttractions />
                     </div>
                     <div className='video'>
-                      <h2>Video</h2>
+                      <h2>{state.lang.video}</h2>
                       <iframe
                         width='847'
                         height='315'
@@ -78,7 +76,7 @@ export default function Country(props) {
                       ></iframe>
                     </div>
                     <div id='map'>
-                      <h2>Map</h2>
+                      <h2>{state.lang.map}</h2>
                       <iframe
                         src={country.mapUrl}
                         width='847'
@@ -99,7 +97,7 @@ export default function Country(props) {
                       <CurrencyWidget />
                     </div>
                     <div className='mt-4 widget_time'>
-                      <CountryTime />
+                      <CountryTime title={state.lang.TimeIn}/>
                     </div>
                   </Col>
                 </Row>
