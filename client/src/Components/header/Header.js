@@ -83,14 +83,14 @@ export default function Header() {
                 <div>
                   <Button
                     variant='outline-warning'
-                    className='ml-3'
+                    className='ml-3 log_in'
                     onClick={showModalLogIn}
                   >
                     Log In
                   </Button>
                   <Button
                     variant='outline-danger'
-                    className='ml-3'
+                    className='ml-3 sing_up'
                     onClick={showModalRegister}
                   >
                     Sing Up

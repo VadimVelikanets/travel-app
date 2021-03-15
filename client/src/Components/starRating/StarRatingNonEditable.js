@@ -23,7 +23,6 @@ class StarRatingNonEditable extends React.Component {
           starCount={5}
           value={rating}
         />
-        {/* <span className='rating'>rating: {rating}</span> */}
       </div>
     );
   }
