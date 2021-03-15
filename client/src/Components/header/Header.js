@@ -1,5 +1,4 @@
 import React from "react";
-
 import { useState, useContext } from "react";
 import { authContext } from "../../context/authContext";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -21,10 +20,12 @@ export default function Header(props) {
 
   const showModalLogIn = () => {
     setOpenLogIn({ isOpenLogIn: true });
+    setOpenRegister(false);
   };
 
   const showModalRegister = () => {
     setOpenRegister({ isOpenRegister: true });
+    setOpenLogIn(false);
   };
   const logout = (e) => {
     e.preventDefault();
