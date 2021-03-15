@@ -11,12 +11,16 @@ import LogInModalWindow from "../logInModalWindow/LogInModalWindow";
 import RegisterModalWindow from "../registerModalWindow/RegisterModalWindow";
 import ScrollToTop from "../scrollToTop/ScrollToTop";
 import SearchResult from "./../SearchResult";
-
+import { useStore } from '../../redux/store';
+import {useAuth} from "../../hooks/auth.hook";
 export default function Header(props) {
+  const [state] = useStore();
+  const { auth } = state;
+
   const [isOpenLogIn, setOpenLogIn] = useState(false);
   const [isOpenRegister, setOpenRegister] = useState(false);
-
-  const auth = useContext(authContext);
+  const {login, logout, userId, token, email} = useAuth()
+  //const auth = useContext(authContext);
 
   const showModalLogIn = () => {
     setOpenLogIn({ isOpenLogIn: true });
@@ -27,9 +31,9 @@ export default function Header(props) {
     setOpenRegister({ isOpenRegister: true });
     setOpenLogIn(false);
   };
-  const logout = (e) => {
+  const logoutUser = (e) => {
     e.preventDefault();
-    auth.logout();
+    logout();
     window.location.reload();
   };
 
@@ -156,7 +160,7 @@ export default function Header(props) {
                   <span>
                     {JSON.parse(localStorage.getItem("userData")).email}
                   </span>
-                  <a href='' onClick={logout}>
+                  <a href='' onClick={logoutUser}>
                     Logout
                   </a>
                 </div>
