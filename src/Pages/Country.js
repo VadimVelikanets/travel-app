@@ -2,6 +2,7 @@ import React from "react";
 
 import "./../styles/Country.css";
 import { Container, Row, Col } from "react-bootstrap";
+
 import CarouselAttractions from "./../Components/CarouselAttractions";
 import CurrencyWidget from "./../Components/currencyWidget/CurrencyWidget";
 import WeatherWidget from "./../Components/weatherWidget/weatherWidget";
@@ -39,6 +40,7 @@ export default function Country() {
                     blanditiis iste?
                   </p>
                 </div>
+
                 <div className='carousel_attractions'>
                   <h2>Sights of France</h2>
                   <CarouselAttractions />

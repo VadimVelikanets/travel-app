@@ -40,3 +40,9 @@
   border-radius: 5px;
   transform: scale(1.1);
 }
+.country_rating_box{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}

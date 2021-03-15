@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Carousel } from "react-bootstrap";
-import "./../styles/CarouselBox.css";
+import "./CarouselBox.css";
 
 export default class CarouselBox extends Component {
   render() {

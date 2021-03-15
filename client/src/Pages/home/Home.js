@@ -1,9 +1,10 @@
 import React, { Component, useState } from "react";
-import CarouselBox from "./../Components/CarouselBox";
+import CarouselBox from "../../Components/carouselBox/CarouselBox";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Card from "../Components/Card";
-import "./../styles/Home.css";
-import GalleryHome from "./../Components/GalleryHome";
+import Card from "../../Components/card/Card";
+import "./Home.css";
+import GalleryHome from "../../Components/galleryHome/GalleryHome";
+import ScrollToTop from "../../Components/scrollToTop/ScrollToTop";
 
 export default class MainPage extends Component {
   constructor(props) {
@@ -40,9 +41,11 @@ export default class MainPage extends Component {
     return (
       <>
         <main>
+          <ScrollToTop />
           <section>
             <CarouselBox />
           </section>
+
           <section className='section best_tours_section'>
             <div className='container-fluid'>
               <h2 className='title best_tours'>our best tours</h2>

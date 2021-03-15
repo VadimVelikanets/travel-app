@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
 
-import "./../styles/Country.css";
+import "./Country.css";
 import { Container, Row, Col } from "react-bootstrap";
-import CarouselAttractions from "./../Components/CarouselAttractions";
-import CurrencyWidget from "./../Components/currencyWidget/CurrencyWidget";
-import WeatherWidget from "./../Components/weatherWidget/weatherWidget";
+import CarouselAttractions from "../../Components/carouselAttractions/CarouselAttractions";
+import CurrencyWidget from "../../Components/currencyWidget/CurrencyWidget";
+import WeatherWidget from "../../Components/weatherWidget/weatherWidget";
+import CountryTime from "../../Components/countryTime/CountryTime";
+import StarRatingEditable from "./../../Components//starRating/StarRatingEditable";
+import StarRatingNonEditable from "./../../Components//starRating/StarRatingNonEditable";
+import ScrollToTop from "../../Components/scrollToTop/ScrollToTop";
 
 export default function Country(props) {
   const [country, setCountry] = useState(null);
+
   useEffect(() => {
     const countryId = window.location.pathname;
     fetch(`/api${countryId}`)
@@ -24,6 +29,16 @@ export default function Country(props) {
       );
   }, []);
   console.log(country);
+
+  let userData;
+  let userId;
+
+  if (window.localStorage.getItem("userData")) {
+    userData = JSON.parse(window.localStorage.getItem("userData"));
+    userId = userData.userId;
+  }
+
+  console.log("userId", userId);
   return (
     <div>
       <main className='main'>
@@ -35,6 +50,7 @@ export default function Country(props) {
                 src={country.countryImg}
                 alt='country'
               />
+              {userId ? <StarRatingEditable /> : <StarRatingNonEditable />}
             </section>
             <section className='section_about'>
               <Container fluid>
@@ -82,7 +98,9 @@ export default function Country(props) {
                     <div className='mt-4 widget_currency'>
                       <CurrencyWidget />
                     </div>
-                    <div className='mt-4 widget_time'>Время</div>
+                    <div className='mt-4 widget_time'>
+                      <CountryTime />
+                    </div>
                   </Col>
                 </Row>
               </Container>
