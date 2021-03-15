@@ -1,0 +1,53 @@
+.navbar-collapse {
+  justify-content: flex-end;
+}
+
+.btn_clean_form {
+  position: absolute;
+  left: 166px;
+}
+.input_country {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.input {
+  box-shadow: rgb(0 0 0 / 15%) 0px 2px 8px;
+}
+.selecting_language {
+  max-width: 68px;
+}
+.btn_group_enter {
+  max-width: 322px;
+  width: 100%;
+  display: flex;
+  margin-top: 5px;
+}
+
+.log_in,
+.sing_up,
+.search {
+  box-shadow: rgb(0 0 0 / 15%) 0px 2px 8px;
+}
+
+.header-user {
+  line-height: 35px;
+}
+.header-user span {
+  margin: 0 10px;
+  font-weight: bold;
+}
+.header-user a {
+  transition: 0.5s all ease;
+}
+.header-user a:hover {
+  opacity: 0.5;
+  text-decoration: none;
+}
+.success-message {
+  color: greenyellow;
+}
+.error-message {
+  color: red;
+}
