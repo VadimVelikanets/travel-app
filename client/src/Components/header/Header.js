@@ -11,6 +11,7 @@ import "./Header.css";
 import LogInModalWindow from "../logInModalWindow/LogInModalWindow";
 import RegisterModalWindow from "../registerModalWindow/RegisterModalWindow";
 import ScrollToTop from "../scrollToTop/ScrollToTop";
+import SearchResult from "./../SearchResult";
 
 export default function Header(props) {
   const [isOpenLogIn, setOpenLogIn] = useState(false);
@@ -84,11 +85,11 @@ export default function Header(props) {
           <Navbar.Collapse id='responsive-navbar-nav' className=''>
             <Form inline>
               <div className='input_country'>
-                {/* <<<<<<< HEAD:client/src/Components/header/Header.js
                 <FormControl
                   autoFocus
                   type='text'
                   placeholder='Enter country'
+                  onChange={searchCountry}
                   className=' mr-sm-2 input'
                 />
                 <Button variant='outline-warning' className='btn_clean_form'>
@@ -100,23 +101,11 @@ export default function Header(props) {
                 </Button>
               </div>
             </Form>
-======= */}
-                <FormControl
-                  autoFocus
-                  type='text'
-                  placeholder='Enter country'
-                  onChange={searchCountry}
-                  className=' mr-sm-2 input_country'
-                />
-              </div>
-            </Form>
             {searchValue != "" ? (
               <SearchResult searchArray={searchArray} />
             ) : (
               ""
             )}
-
-            {/* >>>>>>> c2a246187be67b2c8b39dc16d5794e3de7fdcc4a:client/src/Components/Header.js */}
 
             <div className='btn_group_enter'>
               <Form.Control
