@@ -24,27 +24,27 @@ function CurrencyWidget(props) {
   });
 
   return (
-    <div className="currency-widget">
-      <p className="currency-widget__title">Exchange Rates:</p>
-      <div className="currency-widget__exchange-rates">
-        <div className="currency-widget__currency">
+    <div className='currency-widget'>
+      <p className='currency-widget__title'>Exchange Rates:</p>
+      <div className='currency-widget__exchange-rates'>
+        <div className='currency-widget__currency'>
           <img
             src={`${currency}.svg`}
             alt={currency}
-            className="currency-widget__flag"
+            className='currency-widget__flag'
           />
           <span>1</span>
         </div>
-        <div className="currency-widget__currency">
-          <img src="usd.svg" alt="usd" className="currency-widget__flag" />
+        <div className='currency-widget__currency'>
+          <img src='/usd.svg' alt='usd' className='currency-widget__flag' />
           <span>{usd}</span>
         </div>
-        <div className="currency-widget__currency">
-          <img src="euro.svg" alt="euro" className="currency-widget__flag" />
+        <div className='currency-widget__currency'>
+          <img src='/euro.svg' alt='euro' className='currency-widget__flag' />
           <span>{eur}</span>
         </div>
-        <div className="currency-widget__currency">
-          <img src="rur.svg" alt="rur" className="currency-widget__flag" />
+        <div className='currency-widget__currency'>
+          <img src='/rur.svg' alt='rur' className='currency-widget__flag' />
           <span>{rur}</span>
         </div>
       </div>

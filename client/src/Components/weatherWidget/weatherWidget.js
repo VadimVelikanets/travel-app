@@ -32,34 +32,38 @@ function WeatherWidget(props) {
   }, []);
 
   return (
-    <div className="weather-widget">
-      <p className="weather-widget__cityName">Weather in {props.capitalCity}</p>
-      <div className="weather-widget__info">
-        <span className="weather-widget__degree">{weather}</span>
+    <div className='weather-widget'>
+      <p className='weather-widget__cityName'>Weather in {props.capitalCity}</p>
+      <div className='weather-widget__info'>
+        <span className='weather-widget__degree'>{weather}</span>
         <img
           src={`http://openweathermap.org/img/wn/${weatherIcon}@2x.png`}
-          alt="weatherIcon"
-          className="weather-widget__icon"
+          alt='weatherIcon'
+          className='weather-widget__icon'
         />
       </div>
-      <div className="weather-widget__additional-info">
-        <div className="weather-widget__additional-info-element">
-          <img src="wind.svg" alt="wind" className="weather-widget__pictures" />
+      <div className='weather-widget__additional-info'>
+        <div className='weather-widget__additional-info-element'>
+          <img
+            src='/wind.svg'
+            alt='wind'
+            className='weather-widget__pictures'
+          />
           <span>{wind} m/s</span>
         </div>
-        <div className="weather-widget__additional-info-element">
+        <div className='weather-widget__additional-info-element'>
           <img
-            src="droplets.svg"
-            alt="droplets"
-            className="weather-widget__pictures"
+            src='/droplets.svg'
+            alt='droplets'
+            className='weather-widget__pictures'
           />
           <span>{humidity} %</span>
         </div>
-        <div className="weather-widget__additional-info-element">
+        <div className='weather-widget__additional-info-element'>
           <img
-            src="pressure.svg"
-            alt="pressure"
-            className="weather-widget__pictures"
+            src='/pressure.svg'
+            alt='pressure'
+            className='weather-widget__pictures'
           />
           <span>{pascalToMmHg(pressure)} mm</span>
         </div>

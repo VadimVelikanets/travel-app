@@ -3,6 +3,12 @@
     border-radius: 10px;
     background-color: #0000001e;
     padding: 10px;
+   width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 auto;
 }
 
 .time-info__time {
