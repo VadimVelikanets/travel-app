@@ -4,7 +4,22 @@ function noop(){
 
 }
 const EN = {
+    LogIn: 'Log In',
+    SingUp: 'Sign Up',
+    LogOut: 'LogOut',
+    enterCountry: 'enterCountry',
+    //Main Page
+    carouselTitle: 'Travel SPA',
+    carouselTxt: 'Application about popular resorts',
+    ourBestTour: 'Our Best Tour',
 
+    //country page
+    SightsOf: 'Sights of',
+    video: 'Video',
+    map: 'Map',
+    WeatherIn: 'Weather In',
+    ExchangeRates: 'Exchange Rates:',
+    TimeIn: 'TimeIn'
 }
 export const initialState = {
 
@@ -15,7 +30,7 @@ export const initialState = {
         logout: noop,
         isAuth: false
     },
-    lang: [],
+    lang: EN,
 };
 
 export const changeLang = (lang) => ({
