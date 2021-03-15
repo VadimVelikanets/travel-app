@@ -5,6 +5,7 @@
   border: none;
   background-color: rgb(251 251 251);
   padding: 8px;
+  text-align: center;
 }
 .card:hover {
   text-decoration: none;

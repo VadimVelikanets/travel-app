@@ -1,4 +1,5 @@
 import React from "react";
+
 import { useState, useContext } from "react";
 import { authContext } from "../../context/authContext";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -11,10 +12,12 @@ import LogInModalWindow from "../logInModalWindow/LogInModalWindow";
 import RegisterModalWindow from "../registerModalWindow/RegisterModalWindow";
 import ScrollToTop from "../scrollToTop/ScrollToTop";
 
-export default function Header() {
+export default function Header(props) {
   const [isOpenLogIn, setOpenLogIn] = useState(false);
   const [isOpenRegister, setOpenRegister] = useState(false);
+
   const auth = useContext(authContext);
+
   const showModalLogIn = () => {
     setOpenLogIn({ isOpenLogIn: true });
   };
@@ -27,6 +30,31 @@ export default function Header() {
     auth.logout();
     window.location.reload();
   };
+
+  //Модуль поиска
+  const [searchValue, setSearchValue] = useState("");
+  const [searchArray, setTheArray] = useState([]);
+  const searchCountry = (e) => {
+    setTheArray([]);
+    const searchWord = e.target.value;
+    setSearchValue(searchWord);
+    props.countries
+      .filter((country) =>
+        country.lang.EN.country
+          .toLocaleLowerCase()
+          .includes(searchWord.toLocaleLowerCase())
+      )
+      .map((searchResult) =>
+        setTheArray((searchArray) => [...searchArray, searchResult])
+      );
+  };
+  //Смена языка
+
+  const changeLang = (e) => {
+    props.changeLang(e.target.value);
+    console.log("lang -", e.target.value);
+  };
+
   return (
     <>
       <Navbar
@@ -56,6 +84,7 @@ export default function Header() {
           <Navbar.Collapse id='responsive-navbar-nav' className=''>
             <Form inline>
               <div className='input_country'>
+                {/* <<<<<<< HEAD:client/src/Components/header/Header.js
                 <FormControl
                   autoFocus
                   type='text'
@@ -71,12 +100,33 @@ export default function Header() {
                 </Button>
               </div>
             </Form>
+======= */}
+                <FormControl
+                  autoFocus
+                  type='text'
+                  placeholder='Enter country'
+                  onChange={searchCountry}
+                  className=' mr-sm-2 input_country'
+                />
+              </div>
+            </Form>
+            {searchValue != "" ? (
+              <SearchResult searchArray={searchArray} />
+            ) : (
+              ""
+            )}
+
+            {/* >>>>>>> c2a246187be67b2c8b39dc16d5794e3de7fdcc4a:client/src/Components/Header.js */}
 
             <div className='btn_group_enter'>
-              <Form.Control as='select' className='selecting_language ml-4'>
+              <Form.Control
+                as='select'
+                className='selecting_language ml-4'
+                onChange={changeLang}
+              >
                 <option>EN</option>
                 <option>RU</option>
-                <option>FR</option>
+                <option>DE</option>
               </Form.Control>
 
               {!localStorage.getItem("userData") ? (
@@ -112,8 +162,18 @@ export default function Header() {
       </Navbar>
       <Router>
         <Switch>
+          {/* <<<<<<< HEAD:client/src/Components/header/Header.js
           <Route exact path='/' component={Home} />
           <Route path='/country/' component={Country} />
+======= */}
+
+          <Route exact path='/'>
+            <Home lang={props.lang} countries={props.countries} />
+          </Route>
+          <Route path='/country/'>
+            <Country lang={props.lang} />
+          </Route>
+          {/* >>>>>>> c2a246187be67b2c8b39dc16d5794e3de7fdcc4a:client/src/Components/Header.js */}
         </Switch>
       </Router>
       {isOpenLogIn && (
