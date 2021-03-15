@@ -4,7 +4,9 @@ nav{
 .navbar-collapse {
   justify-content: flex-end;
 }
-
+.input_box{
+  position: relative;
+}
 .btn_clean_form {
   position: absolute;
   left: 166px;

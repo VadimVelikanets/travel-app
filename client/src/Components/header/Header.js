@@ -36,9 +36,11 @@ export default function Header(props) {
   //Модуль поиска
   const [searchValue, setSearchValue] = useState("");
   const [searchArray, setTheArray] = useState([]);
+
   const searchCountry = (e) => {
     setTheArray([]);
     const searchWord = e.target.value;
+
     setSearchValue(searchWord);
     props.countries
       .filter((country) =>
@@ -49,6 +51,12 @@ export default function Header(props) {
       .map((searchResult) =>
         setTheArray((searchArray) => [...searchArray, searchResult])
       );
+  };
+
+  //очистка инпута
+  const cleanInput = () => {
+    console.log("pppppppppppp", searchValue);
+    setSearchValue("");
   };
   //Смена языка
 
@@ -86,16 +94,23 @@ export default function Header(props) {
           <Navbar.Collapse id='responsive-navbar-nav' className=''>
             <Form inline>
               <div className='input_country'>
-                <FormControl
-                  autoFocus
-                  type='text'
-                  placeholder='Enter country'
-                  onChange={searchCountry}
-                  className=' mr-sm-2 input'
-                />
-                <Button variant='outline-warning' className='btn_clean_form'>
-                  &times;
-                </Button>
+                <div className='input_box'>
+                  <FormControl
+                    autoFocus
+                    type='text'
+                    placeholder='Enter country'
+                    onChange={searchCountry}
+                    className=' mr-sm-2 input'
+                    value={searchValue}
+                  />
+                  <Button
+                    variant='secondary'
+                    className='btn_clean_form'
+                    onClick={cleanInput}
+                  >
+                    &times;
+                  </Button>
+                </div>
 
                 <Button variant='warning' className='search'>
                   Search
