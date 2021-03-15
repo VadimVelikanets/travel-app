@@ -3,7 +3,7 @@ import "./App.css";
 import Footer from "./Components//footer/Footer";
 import Header from "./Components/header/Header";
 import { useAuth } from "./hooks/auth.hook";
-import { authContext } from "./context/authContext";
+
 import { useStore } from './redux/store';
 function App() {
 

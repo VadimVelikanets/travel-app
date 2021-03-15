@@ -116,9 +116,6 @@ export default function Header(props) {
                   </Button>
                 </div>
 
-                <Button variant='warning' className='search'>
-                  Search
-                </Button>
               </div>
             </Form>
             {searchValue != "" ? (
@@ -171,10 +168,6 @@ export default function Header(props) {
       </Navbar>
       <Router>
         <Switch>
-          {/* <<<<<<< HEAD:client/src/Components/header/Header.js
-          <Route exact path='/' component={Home} />
-          <Route path='/country/' component={Country} />
-======= */}
 
           <Route exact path='/'>
             <Home lang={props.lang} countries={props.countries} />
@@ -182,7 +175,7 @@ export default function Header(props) {
           <Route path='/country/'>
             <Country lang={props.lang} />
           </Route>
-          {/* >>>>>>> c2a246187be67b2c8b39dc16d5794e3de7fdcc4a:client/src/Components/Header.js */}
+
         </Switch>
       </Router>
       {isOpenLogIn && (
