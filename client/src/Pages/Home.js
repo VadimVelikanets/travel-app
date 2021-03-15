@@ -9,13 +9,37 @@ import GalleryHome from "./../Components/GalleryHome";
 export default class MainPage extends Component {
   constructor(props){
     super(props);
+    this.state = {
+      countries: [],
+      error: null,
+      isLoaded: false,
+      lang: 'EN'
+    };
+
 
   }
 
+  componentDidMount() {
+    fetch("/api/country")
+        .then(res => res.json())
+        .then(
+            (result) => {
+              this.setState({
+                countries: result
+              });
+            },
+            // Примечание: важно обрабатывать ошибки именно здесь, а не в блоке catch(),
+            // чтобы не перехватывать исключения из ошибок в самих компонентах.
+            (error) => {
+              this.setState({
+                isLoaded: true,
+                error
+              });
+            }
+        )
+  }
   render() {
-    const countries  = this.props.countries;
-    const lang  = this.props.lang;
-    console.log(lang)
+    const {countries } = this.state;
     return (
       <>
         <main>
@@ -27,25 +51,18 @@ export default class MainPage extends Component {
               <h2 className='title best_tours'>our best tours</h2>
               <div className='card_container'>
 
+                {countries.map(country => (
+                    <Card linkId={country._id} countryImg={country.countryImg} country={country.lang.EN.country} key={country._id} capitalCity={country.lang.EN.capitalCity}/>
+              ))}
 
-              {countries.map((country, index) => {
-                   if(lang == 'EN') {
-                        return    <Card linkId={country._id} countryImg={country.countryImg} country={country.lang.EN.country} key={country._id} capitalCity={country.lang.EN.capitalCity}/>
-                        } else if(lang == 'RU'){
-                        return    <Card linkId={country._id} countryImg={country.countryImg} country={country.lang.RU.country} key={country._id} capitalCity={country.lang.RU.capitalCity}/>
-                        } else if(lang == 'DE'){
-                        return    <Card linkId={country._id} countryImg={country.countryImg} country={country.lang.DE.country} key={country._id} capitalCity={country.lang.DE.capitalCity}/>
-                   }
-
-              })}
               </div>
             </div>
           </section>
-          <section className="section gallery_section">
-            <div className="container">
-              <h2 className="title">gallery</h2>
+          <section className='section gallery_section'>
+            <div className='container'>
+              <h2 className='title'>gallery</h2>
             </div>
-            <div className="row row-50 gallery_box">
+            <div className='row row-50 gallery_box'>
               <GalleryHome />
               <GalleryHome />
               <GalleryHome />

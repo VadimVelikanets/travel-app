@@ -3,10 +3,10 @@
   border: 2px solid #000000;
   background-color: #0000001e;
   border-radius: 10px;
-width: 300px;
+  max-width: 300px;
   margin: 0 auto;
   box-shadow: 0 0 10px #505050;
-  padding: 10px;
+  padding-bottom: 10px;
 }
 
 .currency-widget__title {
@@ -15,8 +15,7 @@ width: 300px;
 
 .currency-widget__exchange-rates {
   display: flex;
-  /* flex-direction: column; */
-
+  flex-direction: column;
   justify-content: space-around;
   padding: 10px;
   /* align-items: center; */
