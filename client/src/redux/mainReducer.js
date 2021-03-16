@@ -66,7 +66,7 @@ export const initialState = {
         logout: noop,
         isAuth: false
     },
-    lang: RU,
+    lang: EN,
 };
 
 export const changeLang = (lang) => ({
@@ -76,9 +76,22 @@ export const changeLang = (lang) => ({
 
 export const mainReducer = (state = initialState, action) => {
     if (action.type === CHANGE_LANG) {
-        return {
-            ...state,
-            lang: state.lang.concat(action.lang),
-        };
+        if(action.lang === 'EN'){
+            return {
+                ...state,
+                lang: EN,
+            };
+        } else if(action.lang === 'RU'){
+            return {
+                ...state,
+                lang: RU,
+            };
+        }else if(action.lang === 'DE'){
+            return {
+                ...state,
+                lang: DE,
+            };
+        }
+
     }
 };
