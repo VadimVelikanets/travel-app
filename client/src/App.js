@@ -4,6 +4,7 @@ import Footer from "./Components//footer/Footer";
 import Header from "./Components/header/Header";
 import { useAuth } from "./hooks/auth.hook";
 import { authContext } from "./context/authContext";
+
 function App() {
   const { login, logout, token, userId, email } = useAuth();
   const isAuth = !!token;
@@ -11,6 +12,7 @@ function App() {
   const [error, setError] = useState(null);
   const [isLoaded, setLoaded] = useState(false);
   const [lang, setLang] = useState("EN");
+  const [path, setPath] = useState("");
 
   const changeLang = (lang) => {
     setLang(lang);
@@ -30,6 +32,9 @@ function App() {
         }
       );
   }, []);
+  useEffect(() => {
+    setPath(window.location.pathname);
+  });
   return (
     <>
       <authContext.Provider
@@ -42,7 +47,12 @@ function App() {
           email,
         }}
       >
-        <Header changeLang={changeLang} lang={lang} countries={countries} />
+        <Header
+          changeLang={changeLang}
+          lang={lang}
+          countries={countries}
+          path={path}
+        />
         <Footer />
       </authContext.Provider>
     </>

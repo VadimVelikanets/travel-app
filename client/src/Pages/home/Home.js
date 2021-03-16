@@ -5,6 +5,7 @@ import Card from "../../Components/card/Card";
 import "./Home.css";
 import GalleryHome from "../../Components/galleryHome/GalleryHome";
 import ScrollToTop from "../../Components/scrollToTop/ScrollToTop";
+import Loader from "../../Components/loader/Loader";
 
 export default class MainPage extends Component {
   constructor(props) {
@@ -14,6 +15,7 @@ export default class MainPage extends Component {
       error: null,
       isLoaded: false,
       lang: "EN",
+      loading: true,
     };
   }
 
@@ -50,6 +52,7 @@ export default class MainPage extends Component {
             <div className='container-fluid'>
               <h2 className='title best_tours'>our best tours</h2>
               <div className='card_container'>
+                {this.loading && <Loader />}
                 {countries.map((country) => (
                   <Card
                     linkId={country._id}

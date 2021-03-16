@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import { withRouter } from "react-router-dom";
 import "./Country.css";
 import { Container, Row, Col } from "react-bootstrap";
 import CarouselAttractions from "../../Components/carouselAttractions/CarouselAttractions";
@@ -10,11 +10,12 @@ import StarRatingEditable from "./../../Components//starRating/StarRatingEditabl
 import StarRatingNonEditable from "./../../Components//starRating/StarRatingNonEditable";
 import ScrollToTop from "../../Components/scrollToTop/ScrollToTop";
 
-export default function Country(props) {
+function Country(props) {
   const [country, setCountry] = useState(null);
 
   useEffect(() => {
     const countryId = window.location.pathname;
+
     fetch(`/api${countryId}`)
       .then((res) => res.json())
       .then(
@@ -38,7 +39,6 @@ export default function Country(props) {
     userId = userData.userId;
   }
 
-  console.log("userId", userId);
   return (
     <div>
       <main className='main'>
@@ -113,3 +113,6 @@ export default function Country(props) {
     </div>
   );
 }
+
+export default withRouter(Country);
+// export default Country;

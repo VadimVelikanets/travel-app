@@ -1,9 +1,15 @@
 import React from "react";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { authContext } from "../../context/authContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FormControl, Navbar, Container, Form, Button } from "react-bootstrap";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useLocation,
+} from "react-router-dom";
 import Home from "../../Pages/home/Home";
 import Country from "../../Pages/country/Country";
 import "./Header.css";
@@ -55,7 +61,6 @@ export default function Header(props) {
 
   //очистка инпута
   const cleanInput = () => {
-    console.log("pppppppppppp", searchValue);
     setSearchValue("");
   };
   //Смена языка
@@ -64,6 +69,12 @@ export default function Header(props) {
     props.changeLang(e.target.value);
     console.log("lang -", e.target.value);
   };
+
+  // const headerView = () => {
+  // let locationPath = useLocation();
+  // console.log(locationPath);
+  // return <span>Path : {location.pathname}</span>
+  // };
 
   return (
     <>
@@ -78,21 +89,25 @@ export default function Header(props) {
           <Navbar.Brand href='/'>
             <img
               width='100'
-              // src="https://freepngimg.com/thumb/categories/3081.png"
-              // src="https://static.wixstatic.com/media/2cd43b_a7e42622584e4cfd8e160f3778cdda1c~mv2.png/v1/fill/w_518,h_264,fp_0.50_0.50,lg_1,q_95/2cd43b_a7e42622584e4cfd8e160f3778cdda1c~mv2.png"
-              // src="https://freepikpsd.com/wp-content/uploads/2019/10/traveling-png-2-Transparent-Images.png"
-              // src="https://webstockreview.net/images/clipart-airplane-journey-2.png"
-              // src="https://www.searchpng.com/wp-content/uploads/2019/02/Travel-Clip-art-PNG-image-715x715.png"
-              // src="https://static.wixstatic.com/media/2cd43b_396110c4d1f344a1ab06c292ef67a195~mv2.png/v1/fill/w_358,h_358,fp_0.50_0.50,lg_1,q_95/2cd43b_396110c4d1f344a1ab06c292ef67a195~mv2.png"
+              // src='https://static.wixstatic.com/media/2cd43b_a7e42622584e4cfd8e160f3778cdda1c~mv2.png/v1/fill/w_518,h_264,fp_0.50_0.50,lg_1,q_95/2cd43b_a7e42622584e4cfd8e160f3778cdda1c~mv2.png'
+              // src='https://freepikpsd.com/wp-content/uploads/2019/10/traveling-png-2-Transparent-Images.png'
+              // src='https://webstockreview.net/images/clipart-airplane-journey-2.png'
+              // src='https://www.searchpng.com/wp-content/uploads/2019/02/Travel-Clip-art-PNG-image-715x715.png'
+              // src='https://static.wixstatic.com/media/2cd43b_396110c4d1f344a1ab06c292ef67a195~mv2.png/v1/fill/w_358,h_358,fp_0.50_0.50,lg_1,q_95/2cd43b_396110c4d1f344a1ab06c292ef67a195~mv2.png'
               src='https://aviav.ru/wp-content/uploads/2016/09/plane-travel-flight-tourism-travel-icon-png-10-1-300x300.png'
               alt='logo'
             />
           </Navbar.Brand>
-
           <Navbar.Toggle aria-controls='responsive-navbar-nav' />
-
           <Navbar.Collapse id='responsive-navbar-nav' className=''>
-            <Form inline>
+            <Form
+              inline
+              className={`${
+                window.location.pathname.includes("/country/")
+                  ? "unVisible"
+                  : ""
+              } `}
+            >
               <div className='input_country'>
                 <div className='input_box'>
                   <FormControl
@@ -112,9 +127,9 @@ export default function Header(props) {
                   </Button>
                 </div>
 
-                <Button variant='warning' className='search'>
+                {/* <Button variant='warning' className='search'>
                   Search
-                </Button>
+                </Button> */}
               </div>
             </Form>
             {searchValue != "" ? (
@@ -126,7 +141,7 @@ export default function Header(props) {
             <div className='btn_group_enter'>
               <Form.Control
                 as='select'
-                className='selecting_language ml-4'
+                className='selecting_language ml-4 form-control'
                 onChange={changeLang}
               >
                 <option>EN</option>
@@ -167,18 +182,14 @@ export default function Header(props) {
       </Navbar>
       <Router>
         <Switch>
-          {/* <<<<<<< HEAD:client/src/Components/header/Header.js
-          <Route exact path='/' component={Home} />
-          <Route path='/country/' component={Country} />
-======= */}
-
+          {/* <Route exact path='/' component={Home} />
+          <Route path='/country/' component={Country} /> */}
           <Route exact path='/'>
             <Home lang={props.lang} countries={props.countries} />
           </Route>
           <Route path='/country/'>
-            <Country lang={props.lang} />
+            <Country lang={props.lang} path={props.path} />
           </Route>
-          {/* >>>>>>> c2a246187be67b2c8b39dc16d5794e3de7fdcc4a:client/src/Components/Header.js */}
         </Switch>
       </Router>
       {isOpenLogIn && (
