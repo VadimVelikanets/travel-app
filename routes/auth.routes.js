@@ -4,31 +4,72 @@ const router = Router()
 const config = require('config')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const path = require('path')
+const multer = require('multer');
+const { v4: uuidv4 } = require('uuid');
 const {check, validationResult} = require('express-validator');
-router.post(
-    '/register',
-    //Валидация отправляемых данных
-    [
-        check('email', 'Incorrect Email').isEmail(),
-        check('password', 'Password less than 6 symbols').isLength({min: 6})
-    ],
+
+
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './uploads/');
+    },
+    filename: function(req, file, cb) {
+        cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname);
+    }
+});
+
+const fileFilter = (req, file, cb) => {
+    // reject a file
+    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+        cb(null, true);
+    } else {
+        cb(null, false);
+    }
+};
+
+const upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 1024 * 1024 * 5
+    },
+    fileFilter: fileFilter
+});
+
+router.route('/register')
+    .post(   upload.none('photo') ,
+
     async (req, res) =>{
+
         try{
-            console.log('body: ', req.body )
+
+            console.log(req.body)
+
             const errors = validationResult(req)
-            if(!errors.isEmpty()){
-                return res.status(400).json({errors: errors.array(), message: "Incorrect register data"})
+            // if(!errors.isEmpty()){
+            //     return res.status(400).json({errors: errors.array(), message: "Incorrect register data"})
+            // }
+            const {email, password, userName} = req.body
+            let photo =''
+            if(req.file.filename !== ''){
+                photo =req.file.filename;
+            } else{
+                photo =''
             }
-            const {email, password} = req.body
 
             //Проверка на существование email в базе
-            const candidate = await User.findOne({email: email})
-            if(candidate){
-                return res.status(400).json({message: "User is already exist"})
-            }
+            // const candidateEmail = await User.findOne({email: email})
+            // if(candidateEmail){
+            //     return res.status(400).json({message: "User is already exist"})
+            // }
+            // //Проверка на существование userName в базе
+            // const candidate = await User.findOne({userName: userName})
+            // if(candidate){
+            //     return res.status(400).json({message: "User is already exist"})
+            // }
             //Хешируем пароль
             const hashedPassword = await bcrypt.hash(password, 12)
-            const user = new User({email, password: hashedPassword})
+            const user = new User({email, userName, password: hashedPassword, photo})
             await user.save()
             res.status(201).json({message: "User created"})
         } catch (e){

@@ -131,7 +131,7 @@ export default function Country(props) {
                                         </div>
 
                                         <div className='mt-4 widget_currency'>
-                                            <CurrencyWidget />
+                                            {/*<CurrencyWidget />*/}
                                         </div>
                                         <div className='mt-4 widget_time'>
                                             <CountryTime title={state.lang.TimeIn}/>
