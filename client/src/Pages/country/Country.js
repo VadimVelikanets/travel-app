@@ -9,21 +9,30 @@ import CountryTime from "../../Components/countryTime/CountryTime";
 import StarRatingEditable from "./../../Components//starRating/StarRatingEditable";
 import StarRatingNonEditable from "./../../Components//starRating/StarRatingNonEditable";
 import ScrollToTop from "../../Components/scrollToTop/ScrollToTop";
+import { useStore } from "../../redux/store";
+import Loader from "../../Components/loader/Loader";
 
-function Country(props) {
+export default function Country(props) {
   const [country, setCountry] = useState(null);
-
+  const [state] = useStore();
+  const [countryLang, setLang] = useState(null);
   useEffect(() => {
     const countryId = window.location.pathname;
-
     fetch(`/api${countryId}`)
       .then((res) => res.json())
       .then(
         (result) => {
           setCountry(result);
+          if (country !== null) {
+            if (props.lang === "EN") {
+              setLang(country.lang.EN);
+            } else if (props.lang === "RU") {
+              setLang(country.lang.RU);
+            } else if (props.lang === "DE") {
+              setLang(country.lang.DE);
+            }
+          }
         },
-        // Примечание: важно обрабатывать ошибки именно здесь, а не в блоке catch(),
-        // чтобы не перехватывать исключения из ошибок в самих компонентах.
         (error) => {
           console.log(error);
         }
@@ -42,6 +51,7 @@ function Country(props) {
   return (
     <div>
       <main className='main'>
+        {props.loading && <Loader />}
         {country ? (
           <div>
             <section>
@@ -58,16 +68,47 @@ function Country(props) {
                   <Col mg='4'>
                     <div className='description_country'>
                       <h2>
-                        {country.lang.EN.country}, {country.lang.EN.capitalCity}
+                        {props.lang === "EN"
+                          ? country.lang.EN.country
+                          : props.lang === "RU"
+                          ? country.lang.RU.country
+                          : props.lang === "DE"
+                          ? country.lang.DE.country
+                          : ""}
+                        ,{" "}
+                        {props.lang === "EN"
+                          ? country.lang.EN.capitalCity
+                          : props.lang === "RU"
+                          ? country.lang.RU.capitalCity
+                          : props.lang === "DE"
+                          ? country.lang.DE.capitalCity
+                          : ""}
                       </h2>
-                      <p>{country.lang.EN.description}</p>
+                      <p>
+                        {props.lang === "EN"
+                          ? country.lang.EN.description
+                          : props.lang === "RU"
+                          ? country.lang.RU.description
+                          : props.lang === "DE"
+                          ? country.lang.DE.description
+                          : ""}
+                      </p>
                     </div>
                     <div className='carousel_attractions'>
-                      <h2>Sights of {country.lang.EN.country}</h2>
+                      <h2>
+                        {state.lang.SightsOf}{" "}
+                        {props.lang === "EN"
+                          ? country.lang.EN.country
+                          : props.lang === "RU"
+                          ? country.lang.RU.country
+                          : props.lang === "DE"
+                          ? country.lang.DE.country
+                          : ""}
+                      </h2>
                       <CarouselAttractions />
                     </div>
                     <div className='video'>
-                      <h2>Video</h2>
+                      <h2>{state.lang.video}</h2>
                       <iframe
                         width='847'
                         height='315'
@@ -78,7 +119,7 @@ function Country(props) {
                       ></iframe>
                     </div>
                     <div id='map'>
-                      <h2>Map</h2>
+                      <h2>{state.lang.map}</h2>
                       <iframe
                         src={country.mapUrl}
                         width='847'
@@ -99,7 +140,7 @@ function Country(props) {
                       <CurrencyWidget />
                     </div>
                     <div className='mt-4 widget_time'>
-                      <CountryTime />
+                      <CountryTime title={state.lang.TimeIn} />
                     </div>
                   </Col>
                 </Row>
@@ -113,6 +154,3 @@ function Country(props) {
     </div>
   );
 }
-
-export default withRouter(Country);
-// export default Country;

@@ -3,11 +3,14 @@ import { useEffect, useState, useContext  } from "react";
 import {useHttp} from "../../hooks/http.hook";
 import {useMessage} from "../../hooks/message.hook";
 import {useAuth} from "../../hooks/auth.hook";
-import {authContext} from '../../context/authContext'
+
 import "./LogInModalWindow.css";
+import { useStore } from '../../redux/store';
 
 function LogInModalWindow(props) {
-    const auth = useContext(authContext)
+    const [state] = useStore();
+    const { auth } = state;
+    //const auth = useContext(authContext)
     const {login, logout, userId, token, email} = useAuth()
     const message = useMessage()
     const {loading, request, errors, clearError} = useHttp()
@@ -27,7 +30,7 @@ function LogInModalWindow(props) {
     const loginHandler = async () => {
         try {
             const data = await request('/api/auth/login', 'POST', {...form})
-            auth.login(data.token, data.userId, data.email)
+            login(data.token, data.userId, data.email)
             window.location.reload();
         } catch (e) {
             console.log(e)

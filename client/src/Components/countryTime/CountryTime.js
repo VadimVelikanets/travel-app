@@ -1,6 +1,6 @@
 import React from "react";
 import "./CountryTime.css";
-
+import { useStore } from '../../redux/store';
 class CountryTime extends React.Component {
   constructor(props) {
     super(props);
@@ -39,7 +39,7 @@ class CountryTime extends React.Component {
   render() {
     return (
       <div className='time-info'>
-        <p className='time-info__city-name'>Time in {this.props.cityName}</p>
+        <p className='time-info__city-name'>{this.props.title} {this.props.cityName}</p>
         <span className='time-info__time'>
           {`${
             this.state.hours < 10 ? `0${this.state.hours}` : this.state.hours

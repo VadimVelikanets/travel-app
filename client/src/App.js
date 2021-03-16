@@ -3,8 +3,8 @@ import "./App.css";
 import Footer from "./Components//footer/Footer";
 import Header from "./Components/header/Header";
 import { useAuth } from "./hooks/auth.hook";
-import { authContext } from "./context/authContext";
 
+import { useStore } from "./redux/store";
 function App() {
   const { login, logout, token, userId, email } = useAuth();
   const isAuth = !!token;
@@ -12,8 +12,10 @@ function App() {
   const [error, setError] = useState(null);
   const [isLoaded, setLoaded] = useState(false);
   const [lang, setLang] = useState("EN");
-  const [path, setPath] = useState("");
-
+  const [state] = useStore();
+  const [loading, setLoading] = useState(true);
+  console.log("loading", loading);
+  console.log(state);
   const changeLang = (lang) => {
     setLang(lang);
   };
@@ -23,6 +25,7 @@ function App() {
       .then(
         (result) => {
           setCountries(result);
+          setLoading(false);
         },
         // Примечание: важно обрабатывать ошибки именно здесь, а не в блоке catch(),
         // чтобы не перехватывать исключения из ошибок в самих компонентах.
@@ -32,29 +35,15 @@ function App() {
         }
       );
   }, []);
-  useEffect(() => {
-    setPath(window.location.pathname);
-  });
   return (
     <>
-      <authContext.Provider
-        value={{
-          login,
-          logout,
-          token,
-          userId,
-          isAuth,
-          email,
-        }}
-      >
-        <Header
-          changeLang={changeLang}
-          lang={lang}
-          countries={countries}
-          path={path}
-        />
-        <Footer />
-      </authContext.Provider>
+      <Header
+        changeLang={changeLang}
+        lang={lang}
+        countries={countries}
+        loading={loading}
+      />
+      <Footer />
     </>
   );
 }

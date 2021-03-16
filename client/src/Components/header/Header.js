@@ -1,6 +1,5 @@
 import React from "react";
-import { useState, useContext, useEffect } from "react";
-import { authContext } from "../../context/authContext";
+import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FormControl, Navbar, Container, Form, Button } from "react-bootstrap";
 import {
@@ -17,12 +16,18 @@ import LogInModalWindow from "../logInModalWindow/LogInModalWindow";
 import RegisterModalWindow from "../registerModalWindow/RegisterModalWindow";
 import ScrollToTop from "../scrollToTop/ScrollToTop";
 import SearchResult from "./../SearchResult";
+import { useStore } from "../../redux/store";
+
+import { changeLang } from "../../redux/mainReducer";
+import { useAuth } from "../../hooks/auth.hook";
 
 export default function Header(props) {
+  const [state] = useStore();
+  const { auth } = state;
+  const [, dispatch] = useStore();
   const [isOpenLogIn, setOpenLogIn] = useState(false);
   const [isOpenRegister, setOpenRegister] = useState(false);
-
-  const auth = useContext(authContext);
+  const { login, logout, userId, token, email } = useAuth();
 
   const showModalLogIn = () => {
     setOpenLogIn({ isOpenLogIn: true });
@@ -33,9 +38,9 @@ export default function Header(props) {
     setOpenRegister({ isOpenRegister: true });
     setOpenLogIn(false);
   };
-  const logout = (e) => {
+  const logoutUser = (e) => {
     e.preventDefault();
-    auth.logout();
+    logout();
     window.location.reload();
   };
 
@@ -65,19 +70,15 @@ export default function Header(props) {
   };
   //Смена языка
 
-  const changeLang = (e) => {
+  const changeLangHandler = (e) => {
     props.changeLang(e.target.value);
-    console.log("lang -", e.target.value);
+    dispatch(changeLang(e.target.value));
+    //changeLang(e.target.value);
+    //console.log("lang -", e.target.value);
   };
 
-  // const headerView = () => {
-  // let locationPath = useLocation();
-  // console.log(locationPath);
-  // return <span>Path : {location.pathname}</span>
-  // };
-
   return (
-    <>
+    <Router>
       <Navbar
         // fixed='top'
         collapseOnSelect
@@ -86,19 +87,24 @@ export default function Header(props) {
         className=' justify-content-between header'
       >
         <Container fluid>
-          <Navbar.Brand href='/'>
-            <img
-              width='100'
-              // src='https://static.wixstatic.com/media/2cd43b_a7e42622584e4cfd8e160f3778cdda1c~mv2.png/v1/fill/w_518,h_264,fp_0.50_0.50,lg_1,q_95/2cd43b_a7e42622584e4cfd8e160f3778cdda1c~mv2.png'
-              // src='https://freepikpsd.com/wp-content/uploads/2019/10/traveling-png-2-Transparent-Images.png'
-              // src='https://webstockreview.net/images/clipart-airplane-journey-2.png'
-              // src='https://www.searchpng.com/wp-content/uploads/2019/02/Travel-Clip-art-PNG-image-715x715.png'
-              // src='https://static.wixstatic.com/media/2cd43b_396110c4d1f344a1ab06c292ef67a195~mv2.png/v1/fill/w_358,h_358,fp_0.50_0.50,lg_1,q_95/2cd43b_396110c4d1f344a1ab06c292ef67a195~mv2.png'
-              src='https://aviav.ru/wp-content/uploads/2016/09/plane-travel-flight-tourism-travel-icon-png-10-1-300x300.png'
-              alt='logo'
-            />
+          <Navbar.Brand>
+            <Link to='/' exact>
+              <img
+                width='100'
+                // src="https://freepngimg.com/thumb/categories/3081.png"
+                // src="https://static.wixstatic.com/media/2cd43b_a7e42622584e4cfd8e160f3778cdda1c~mv2.png/v1/fill/w_518,h_264,fp_0.50_0.50,lg_1,q_95/2cd43b_a7e42622584e4cfd8e160f3778cdda1c~mv2.png"
+                // src="https://freepikpsd.com/wp-content/uploads/2019/10/traveling-png-2-Transparent-Images.png"
+                // src="https://webstockreview.net/images/clipart-airplane-journey-2.png"
+                // src="https://www.searchpng.com/wp-content/uploads/2019/02/Travel-Clip-art-PNG-image-715x715.png"
+                // src="https://static.wixstatic.com/media/2cd43b_396110c4d1f344a1ab06c292ef67a195~mv2.png/v1/fill/w_358,h_358,fp_0.50_0.50,lg_1,q_95/2cd43b_396110c4d1f344a1ab06c292ef67a195~mv2.png"
+                src='https://aviav.ru/wp-content/uploads/2016/09/plane-travel-flight-tourism-travel-icon-png-10-1-300x300.png'
+                alt='logo'
+              />
+            </Link>
           </Navbar.Brand>
+
           <Navbar.Toggle aria-controls='responsive-navbar-nav' />
+
           <Navbar.Collapse id='responsive-navbar-nav' className=''>
             <Form
               inline
@@ -113,7 +119,7 @@ export default function Header(props) {
                   <FormControl
                     autoFocus
                     type='text'
-                    placeholder='Enter country'
+                    placeholder={state.lang.enterCountry}
                     onChange={searchCountry}
                     className=' mr-sm-2 input'
                     value={searchValue}
@@ -126,10 +132,6 @@ export default function Header(props) {
                     &times;
                   </Button>
                 </div>
-
-                {/* <Button variant='warning' className='search'>
-                  Search
-                </Button> */}
               </div>
             </Form>
             {searchValue != "" ? (
@@ -139,11 +141,7 @@ export default function Header(props) {
             )}
 
             <div className='btn_group_enter'>
-              <Form.Control
-                as='select'
-                className='selecting_language ml-4 form-control'
-                onChange={changeLang}
-              >
+              <Form.Control as='select' onChange={changeLangHandler}>
                 <option>EN</option>
                 <option>RU</option>
                 <option>DE</option>
@@ -156,14 +154,14 @@ export default function Header(props) {
                     className='ml-3 log_in'
                     onClick={showModalLogIn}
                   >
-                    Log In
+                    {state.lang.LogIn}
                   </Button>
                   <Button
                     variant='outline-danger'
                     className='ml-3 sing_up'
                     onClick={showModalRegister}
                   >
-                    Sing Up
+                    {state.lang.SingUp}
                   </Button>
                 </div>
               ) : (
@@ -171,8 +169,8 @@ export default function Header(props) {
                   <span>
                     {JSON.parse(localStorage.getItem("userData")).email}
                   </span>
-                  <a href='' onClick={logout}>
-                    Logout
+                  <a href='' onClick={logoutUser}>
+                    {state.lang.LogOut}
                   </a>
                 </div>
               )}
@@ -180,18 +178,23 @@ export default function Header(props) {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Router>
-        <Switch>
-          {/* <Route exact path='/' component={Home} />
-          <Route path='/country/' component={Country} /> */}
-          <Route exact path='/'>
-            <Home lang={props.lang} countries={props.countries} />
-          </Route>
-          <Route path='/country/'>
-            <Country lang={props.lang} path={props.path} />
-          </Route>
-        </Switch>
-      </Router>
+      <Switch>
+        <Route exact path='/'>
+          <Home
+            lang={props.lang}
+            countries={props.countries}
+            loading={props.loading}
+          />
+        </Route>
+        <Route path='/country/'>
+          <Country
+            lang={props.lang}
+            path={props.path}
+            loading={props.loading}
+          />
+        </Route>
+      </Switch>
+
       {isOpenLogIn && (
         <LogInModalWindow closeModalLigIn={() => setOpenLogIn(false)} />
       )}
@@ -200,6 +203,6 @@ export default function Header(props) {
           closeModalRegister={() => setOpenRegister(false)}
         />
       )}
-    </>
+    </Router>
   );
 }

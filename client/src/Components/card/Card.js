@@ -1,25 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import Country from "../../Pages/country/Country";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import "./Card.css";
 import StarRatingNonEditable from "./../starRating/StarRatingNonEditable";
 import ScrollToTop from "../scrollToTop/ScrollToTop";
+import Loader from "../../Components/loader/Loader";
 
-// const ScrollLink=Scroll.Link
-
+{
+  /* {loading && <Loader />} */
+}
 export default function Card(props) {
   const link = "/country/" + props.linkId;
+  // const [loading, setLoading] = useState(props.loading);
+  console.log("----------", props.loading);
+
   return (
     <>
       <Link to={link} className='card'>
         <div className='figure'>
           <div className='figure_box'>
-            <img
-              className='figure_image'
-              src={props.countryImg}
-              alt='country'
-            />
+            {props.loading ? (
+              <Loader />
+            ) : (
+              <img
+                className='figure_image'
+                src={props.countryImg}
+                alt='country'
+              />
+            )}
           </div>
           <div className='country_rating_box'>
             <h5 className='figcaption'>
