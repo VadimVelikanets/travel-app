@@ -3,7 +3,7 @@ import "./App.css";
 import Footer from "./Components//footer/Footer";
 import Header from "./Components/header/Header";
 import { useAuth } from "./hooks/auth.hook";
-
+import { BrowserRouter as Router } from "react-router-dom";
 import { useStore } from "./redux/store";
 function App() {
   const { login, logout, token, userId, email } = useAuth();
@@ -14,7 +14,7 @@ function App() {
   const [lang, setLang] = useState("EN");
   const [state] = useStore();
   const [loading, setLoading] = useState(true);
-  console.log("loading", loading);
+
   console.log(state);
   const changeLang = (lang) => {
     setLang(lang);
@@ -36,7 +36,7 @@ function App() {
       );
   }, []);
   return (
-    <>
+    <Router>
       <Header
         changeLang={changeLang}
         lang={lang}
@@ -44,7 +44,7 @@ function App() {
         loading={loading}
       />
       <Footer />
-    </>
+    </Router>
   );
 }
 

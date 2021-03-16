@@ -65,6 +65,7 @@ const MainPage = (props) => {
           <div className='container'>
             <h2 className='title'>gallery</h2>
           </div>
+          {props.loading && <Loader />}
           <div className='row row-50 gallery_box'>
             <GalleryHome />
             <GalleryHome />

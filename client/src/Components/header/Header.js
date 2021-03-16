@@ -8,6 +8,7 @@ import {
   Route,
   Link,
   useLocation,
+  // useRouteMatch,
 } from "react-router-dom";
 import Home from "../../Pages/home/Home";
 import Country from "../../Pages/country/Country";
@@ -17,9 +18,10 @@ import RegisterModalWindow from "../registerModalWindow/RegisterModalWindow";
 import ScrollToTop from "../scrollToTop/ScrollToTop";
 import SearchResult from "./../SearchResult";
 import { useStore } from "../../redux/store";
-
 import { changeLang } from "../../redux/mainReducer";
 import { useAuth } from "../../hooks/auth.hook";
+
+// import { useRouter } from "react-router-dom";
 
 export default function Header(props) {
   const [state] = useStore();
@@ -28,6 +30,11 @@ export default function Header(props) {
   const [isOpenLogIn, setOpenLogIn] = useState(false);
   const [isOpenRegister, setOpenRegister] = useState(false);
   const { login, logout, userId, token, email } = useAuth();
+  const location = useLocation();
+  // const router = useRouter();
+
+  console.log("====location");
+  console.log(location);
 
   const showModalLogIn = () => {
     setOpenLogIn({ isOpenLogIn: true });
@@ -77,8 +84,9 @@ export default function Header(props) {
     //console.log("lang -", e.target.value);
   };
 
+  console.log("_____");
   return (
-    <Router>
+    <>
       <Navbar
         // fixed='top'
         collapseOnSelect
@@ -109,9 +117,7 @@ export default function Header(props) {
             <Form
               inline
               className={`${
-                window.location.pathname.includes("/country/")
-                  ? "unVisible"
-                  : ""
+                location.pathname.includes("country") ? "unVisible" : ""
               } `}
             >
               <div className='input_country'>
@@ -203,6 +209,6 @@ export default function Header(props) {
           closeModalRegister={() => setOpenRegister(false)}
         />
       )}
-    </Router>
+    </>
   );
 }
