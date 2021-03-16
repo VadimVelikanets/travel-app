@@ -37,7 +37,7 @@ const upload = multer({
 });
 
 router.route('/register')
-    .post(   upload.none('photo') ,
+    .post(   upload.single('photo') ,
 
     async (req, res) =>{
 

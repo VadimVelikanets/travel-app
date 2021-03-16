@@ -14,6 +14,7 @@ function RegisterModalWindow(props) {
     const {login, logout, userId, token, email} = useAuth()
     const message = useMessage()
     const {loading, request, errors, clearError} = useHttp()
+    const [fileName, setFileName] = useState('')
     const [form, setForm] = useState({
         email: '',
         userName: '',
@@ -35,6 +36,7 @@ function RegisterModalWindow(props) {
     const handlePhoto = (e) => {
 
         setForm({ ...form, photo: e.target.files[0] })
+        setFileName(e.target.files[0].name)
     }
     const registerHandler = async (e) => {
         e.preventDefault();
@@ -101,11 +103,12 @@ function RegisterModalWindow(props) {
                 type="file"
                 accept=".png, .jpg, .jpeg"
                 name="photo"
+
                 onChange={handlePhoto}
             />
             <span>+ UPLOAD PHOTO</span>
         </div>
-
+        <div className='file-name'>{fileName}</div>
       <button type='submit' className='registerModalWindow__submit'>Register</button>
         <span className='success-message'>{successMessage}</span>
         <span className='error-message'>{errorMessage}</span>
