@@ -1,6 +1,6 @@
 import React from "react";
-import { useState, useContext } from "react";
-import { authContext } from "../../context/authContext";
+import { useState } from "react";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FormControl, Navbar, Container, Form, Button } from "react-bootstrap";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -11,12 +11,18 @@ import LogInModalWindow from "../logInModalWindow/LogInModalWindow";
 import RegisterModalWindow from "../registerModalWindow/RegisterModalWindow";
 import ScrollToTop from "../scrollToTop/ScrollToTop";
 import SearchResult from "./../SearchResult";
+import { useStore} from '../../redux/store';
+
+import {changeLang} from "../../redux/mainReducer"
+import {useAuth} from "../../hooks/auth.hook";
 
 export default function Header(props) {
+  const [state] = useStore();
+  const { auth } = state;
+  const [, dispatch] = useStore();
   const [isOpenLogIn, setOpenLogIn] = useState(false);
   const [isOpenRegister, setOpenRegister] = useState(false);
-
-  const auth = useContext(authContext);
+  const {login, logout, userId, token, email} = useAuth()
 
   const showModalLogIn = () => {
     setOpenLogIn({ isOpenLogIn: true });
@@ -27,9 +33,9 @@ export default function Header(props) {
     setOpenRegister({ isOpenRegister: true });
     setOpenLogIn(false);
   };
-  const logout = (e) => {
+  const logoutUser = (e) => {
     e.preventDefault();
-    auth.logout();
+    logout();
     window.location.reload();
   };
 
@@ -43,14 +49,14 @@ export default function Header(props) {
 
     setSearchValue(searchWord);
     props.countries
-      .filter((country) =>
-        country.lang.EN.country
-          .toLocaleLowerCase()
-          .includes(searchWord.toLocaleLowerCase())
-      )
-      .map((searchResult) =>
-        setTheArray((searchArray) => [...searchArray, searchResult])
-      );
+        .filter((country) =>
+            country.lang.EN.country
+                .toLocaleLowerCase()
+                .includes(searchWord.toLocaleLowerCase())
+        )
+        .map((searchResult) =>
+            setTheArray((searchArray) => [...searchArray, searchResult])
+        );
   };
 
   //очистка инпута
@@ -60,117 +66,116 @@ export default function Header(props) {
   };
   //Смена языка
 
-  const changeLang = (e) => {
+  const changeLangHandler = (e) => {
     props.changeLang(e.target.value);
-    console.log("lang -", e.target.value);
+    dispatch(changeLang(e.target.value));
+    //changeLang(e.target.value);
+    //console.log("lang -", e.target.value);
   };
 
+
   return (
-    <>
-      <Navbar
-        // fixed='top'
-        collapseOnSelect
-        expand='md'
-        variant='light'
-        className=' justify-content-between header'
-      >
-        <Container fluid>
-          <Navbar.Brand href='/'>
-            <img
-              width='100'
-              // src="https://freepngimg.com/thumb/categories/3081.png"
-              // src="https://static.wixstatic.com/media/2cd43b_a7e42622584e4cfd8e160f3778cdda1c~mv2.png/v1/fill/w_518,h_264,fp_0.50_0.50,lg_1,q_95/2cd43b_a7e42622584e4cfd8e160f3778cdda1c~mv2.png"
-              // src="https://freepikpsd.com/wp-content/uploads/2019/10/traveling-png-2-Transparent-Images.png"
-              // src="https://webstockreview.net/images/clipart-airplane-journey-2.png"
-              // src="https://www.searchpng.com/wp-content/uploads/2019/02/Travel-Clip-art-PNG-image-715x715.png"
-              // src="https://static.wixstatic.com/media/2cd43b_396110c4d1f344a1ab06c292ef67a195~mv2.png/v1/fill/w_358,h_358,fp_0.50_0.50,lg_1,q_95/2cd43b_396110c4d1f344a1ab06c292ef67a195~mv2.png"
-              src='https://aviav.ru/wp-content/uploads/2016/09/plane-travel-flight-tourism-travel-icon-png-10-1-300x300.png'
-              alt='logo'
-            />
-          </Navbar.Brand>
+      <Router>
+        <Navbar
+            // fixed='top'
+            collapseOnSelect
+            expand='md'
+            variant='light'
+            className=' justify-content-between header'
+        >
+          <Container fluid>
+            <Navbar.Brand >
+              <Link to='/' exact>
+                <img
+                    width='100'
+                    // src="https://freepngimg.com/thumb/categories/3081.png"
+                    // src="https://static.wixstatic.com/media/2cd43b_a7e42622584e4cfd8e160f3778cdda1c~mv2.png/v1/fill/w_518,h_264,fp_0.50_0.50,lg_1,q_95/2cd43b_a7e42622584e4cfd8e160f3778cdda1c~mv2.png"
+                    // src="https://freepikpsd.com/wp-content/uploads/2019/10/traveling-png-2-Transparent-Images.png"
+                    // src="https://webstockreview.net/images/clipart-airplane-journey-2.png"
+                    // src="https://www.searchpng.com/wp-content/uploads/2019/02/Travel-Clip-art-PNG-image-715x715.png"
+                    // src="https://static.wixstatic.com/media/2cd43b_396110c4d1f344a1ab06c292ef67a195~mv2.png/v1/fill/w_358,h_358,fp_0.50_0.50,lg_1,q_95/2cd43b_396110c4d1f344a1ab06c292ef67a195~mv2.png"
+                    src='https://aviav.ru/wp-content/uploads/2016/09/plane-travel-flight-tourism-travel-icon-png-10-1-300x300.png'
+                    alt='logo'
+                />
+              </Link>
 
-          <Navbar.Toggle aria-controls='responsive-navbar-nav' />
+            </Navbar.Brand>
 
-          <Navbar.Collapse id='responsive-navbar-nav' className=''>
-            <Form inline>
-              <div className='input_country'>
-                <div className='input_box'>
-                  <FormControl
-                    autoFocus
-                    type='text'
-                    placeholder='Enter country'
-                    onChange={searchCountry}
-                    className=' mr-sm-2 input'
-                    value={searchValue}
-                  />
-                  <Button
-                    variant='secondary'
-                    className='btn_clean_form'
-                    onClick={cleanInput}
-                  >
-                    &times;
-                  </Button>
+            <Navbar.Toggle aria-controls='responsive-navbar-nav' />
+
+            <Navbar.Collapse id='responsive-navbar-nav' className=''>
+              <Form inline>
+                <div className='input_country'>
+                  <div className='input_box'>
+                    <FormControl
+                        autoFocus
+                        type='text'
+                        placeholder={state.lang.enterCountry}
+                        onChange={searchCountry}
+                        className=' mr-sm-2 input'
+                        value={searchValue}
+                    />
+                    <Button
+                        variant='secondary'
+                        className='btn_clean_form'
+                        onClick={cleanInput}
+                    >
+                      &times;
+                    </Button>
+                  </div>
+
                 </div>
-
-                <Button variant='warning' className='search'>
-                  Search
-                </Button>
-              </div>
-            </Form>
-            {searchValue != "" ? (
-              <SearchResult searchArray={searchArray} />
-            ) : (
-              ""
-            )}
-
-            <div className='btn_group_enter'>
-              <Form.Control
-                as='select'
-                className='selecting_language ml-4'
-                onChange={changeLang}
-              >
-                <option>EN</option>
-                <option>RU</option>
-                <option>DE</option>
-              </Form.Control>
-
-              {!localStorage.getItem("userData") ? (
-                <div>
-                  <Button
-                    variant='outline-warning'
-                    className='ml-3 log_in'
-                    onClick={showModalLogIn}
-                  >
-                    Log In
-                  </Button>
-                  <Button
-                    variant='outline-danger'
-                    className='ml-3 sing_up'
-                    onClick={showModalRegister}
-                  >
-                    Sing Up
-                  </Button>
-                </div>
+              </Form>
+              {searchValue != "" ? (
+                  <SearchResult searchArray={searchArray} />
               ) : (
-                <div className='header-user'>
+                  ""
+              )}
+
+              <div className='btn_group_enter'>
+                <Form.Control
+                    as='select'
+                    onChange={changeLangHandler}
+
+                >
+                  <option>EN</option>
+                  <option>RU</option>
+                  <option>DE</option>
+                </Form.Control>
+
+                {!localStorage.getItem("userData") ? (
+                    <div>
+                      <Button
+                          variant='outline-warning'
+                          className='ml-3 log_in'
+                          onClick={showModalLogIn}
+                      >
+                        {state.lang.LogIn}
+                      </Button>
+                      <Button
+                          variant='outline-danger'
+                          className='ml-3 sing_up'
+                          onClick={showModalRegister}
+                      >
+                        {state.lang.SingUp}
+                      </Button>
+                    </div>
+                ) : (
+                    <div className='header-user'>
                   <span>
                     {JSON.parse(localStorage.getItem("userData")).email}
                   </span>
-                  <a href='' onClick={logout}>
-                    Logout
-                  </a>
-                </div>
-              )}
-            </div>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-      <Router>
+                      <a href='' onClick={logoutUser}>
+                        {state.lang.LogOut}
+                      </a>
+                    </div>
+                )}
+              </div>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+
         <Switch>
-          {/* <<<<<<< HEAD:client/src/Components/header/Header.js
-          <Route exact path='/' component={Home} />
-          <Route path='/country/' component={Country} />
-======= */}
 
           <Route exact path='/'>
             <Home lang={props.lang} countries={props.countries} />
@@ -178,17 +183,17 @@ export default function Header(props) {
           <Route path='/country/'>
             <Country lang={props.lang} />
           </Route>
-          {/* >>>>>>> c2a246187be67b2c8b39dc16d5794e3de7fdcc4a:client/src/Components/Header.js */}
+
         </Switch>
+
+        {isOpenLogIn && (
+            <LogInModalWindow closeModalLigIn={() => setOpenLogIn(false)} />
+        )}
+        {isOpenRegister && (
+            <RegisterModalWindow
+                closeModalRegister={() => setOpenRegister(false)}
+            />
+        )}
       </Router>
-      {isOpenLogIn && (
-        <LogInModalWindow closeModalLigIn={() => setOpenLogIn(false)} />
-      )}
-      {isOpenRegister && (
-        <RegisterModalWindow
-          closeModalRegister={() => setOpenRegister(false)}
-        />
-      )}
-    </>
   );
 }

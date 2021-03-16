@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import { Carousel } from "react-bootstrap";
 import "./CarouselBox.css";
+import { useStore } from '../../redux/store';
 
-export default class CarouselBox extends Component {
-  render() {
+
+
+const CarouselBox =() =>{
+
+    const [state] = useStore();
     return (
       <Carousel>
         <Carousel.Item>
@@ -14,11 +18,9 @@ export default class CarouselBox extends Component {
             alt='nature'
           />
           <Carousel.Caption>
-            <h1 className='carousel_caption'>Lorem lorem lorem </h1>
+            <h1 className='carousel_caption'>{state.lang.carouselTitle}</h1>
             <p className='carousel_caption'>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
-              distinctio saepe laudantium nobis sed asperiores molestias magni
-              ab. Error, corporis!
+              {state.lang.carouselTxt}
             </p>
           </Carousel.Caption>
         </Carousel.Item>
@@ -30,11 +32,9 @@ export default class CarouselBox extends Component {
             alt='nature'
           />
           <Carousel.Caption>
-            <h1 className='carousel_caption'>Lorem lorem lorem </h1>
+            <h1 className='carousel_caption'>{state.lang.carouselTitle}</h1>
             <p className='carousel_caption'>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
-              distinctio saepe laudantium nobis sed asperiores molestias magni
-              ab. Error, corporis!
+              {state.lang.carouselTxt}
             </p>
           </Carousel.Caption>
         </Carousel.Item>
@@ -46,11 +46,9 @@ export default class CarouselBox extends Component {
             alt='nature'
           />
           <Carousel.Caption>
-            <h1 className='carousel_caption'>Lorem lorem lorem </h1>
+            <h1 className='carousel_caption'>{state.lang.carouselTitle}</h1>
             <p className='carousel_caption'>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
-              distinctio saepe laudantium nobis sed asperiores molestias magni
-              ab. Error, corporis!
+              {state.lang.carouselTxt}
             </p>
           </Carousel.Caption>
         </Carousel.Item>
@@ -62,11 +60,9 @@ export default class CarouselBox extends Component {
             alt='nature'
           />
           <Carousel.Caption>
-            <h1 className='carousel_caption'>Lorem lorem lorem </h1>
+            <h1 className='carousel_caption'>Travel SPA </h1>
             <p className='carousel_caption'>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
-              distinctio saepe laudantium nobis sed asperiores molestias magni
-              ab. Error, corporis!
+              Application about popular resorts
             </p>
           </Carousel.Caption>
         </Carousel.Item>
@@ -78,15 +74,14 @@ export default class CarouselBox extends Component {
             alt='nature'
           />
           <Carousel.Caption>
-            <h1 className='carousel_caption'>Lorem lorem lorem </h1>
+            <h1 className='carousel_caption'>Travel SPA </h1>
             <p className='carousel_caption'>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
-              distinctio saepe laudantium nobis sed asperiores molestias magni
-              ab. Error, corporis!
+              Application about popular resorts
             </p>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
     );
-  }
 }
+
+export default CarouselBox;
