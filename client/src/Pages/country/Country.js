@@ -112,13 +112,15 @@ function Country(props) {
                       </h2>
 
                       <div className='carousel_box'>
-                        <Button
+                        <div
                           className='btn_carousel'
-                          variant='outline-warning'
                           onClick={fullScreenCarousel.enter}
                         >
-                          Enter fullscreen
-                        </Button>
+                          <img
+                            width='30'
+                            src='https://img.pngio.com/full-screen-vector-icon-full-screen-maximize-full-screen-icon-cool-black-pngs-full-screen-640_640.png'
+                          />
+                        </div>
                       </div>
                       <FullScreen handle={fullScreenCarousel}>
                         <CarouselAttractions
@@ -130,13 +132,15 @@ function Country(props) {
                     <div className='video'>
                       <h2>{state.lang.video}</h2>
                       <div className='video_box'>
-                        <Button
+                        <div
                           className='btn_video'
-                          variant='outline-warning'
                           onClick={fullScreenVideo.enter}
                         >
-                          Enter fullscreen
-                        </Button>
+                          <img
+                            width='30'
+                            src='https://img.pngio.com/full-screen-vector-icon-full-screen-maximize-full-screen-icon-cool-black-pngs-full-screen-640_640.png'
+                          />
+                        </div>
                       </div>
                       <FullScreen handle={fullScreenVideo}>
                         <iframe
@@ -150,13 +154,12 @@ function Country(props) {
                     <div id='map'>
                       <h2>{state.lang.map}</h2>
                       <div className='map_box'>
-                        <Button
-                          className='btn_map'
-                          variant='outline-warning'
-                          onClick={fullScreenMap.enter}
-                        >
-                          Enter fullscreen
-                        </Button>
+                        <div className='btn_map' onClick={fullScreenMap.enter}>
+                          <img
+                            width='30'
+                            src='https://img.pngio.com/full-screen-vector-icon-full-screen-maximize-full-screen-icon-cool-black-pngs-full-screen-640_640.png'
+                          />
+                        </div>
                       </div>
                       <FullScreen handle={fullScreenMap}>
                         <iframe
