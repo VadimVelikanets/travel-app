@@ -3,18 +3,23 @@ import { useEffect, useState, useContext  } from "react";
 import {useHttp} from "../../hooks/http.hook";
 import {useMessage} from "../../hooks/message.hook";
 import {useAuth} from "../../hooks/auth.hook";
-import {authContext} from '../../context/authContext'
+import { useStore } from '../../redux/store';
 import "./RegisterModalWindow.css";
-
+import axios from 'axios';
 
 
 function RegisterModalWindow(props) {
-    const auth = useContext(authContext)
+    const [state] = useStore();
+    const { auth } = state;
     const {login, logout, userId, token, email} = useAuth()
     const message = useMessage()
     const {loading, request, errors, clearError} = useHttp()
+    const [fileName, setFileName] = useState('')
     const [form, setForm] = useState({
-        email: '', password: ''
+        email: '',
+        userName: '',
+        password: '',
+        photo: ''
     })
     const [successMessage, setSuccessMessage] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
@@ -28,13 +33,36 @@ function RegisterModalWindow(props) {
         setForm({ ...form, [event.target.name]: event.target.value })
         setErrorMessage('')
     }
+    const handlePhoto = (e) => {
 
-    const registerHandler = async () => {
+        setForm({ ...form, photo: e.target.files[0] })
+        setFileName(e.target.files[0].name)
+    }
+    const registerHandler = async (e) => {
+        e.preventDefault();
         try {
-            const data = await request('/api/auth/register', 'POST', {...form})
-            message(data.message)
-            setSuccessMessage('Your profile created!')
-            setTimeout(window.location.reload(), 1500)
+
+            const formData = new FormData();
+            formData.append('email', form.email);
+            formData.append('userName', form.userName);
+            formData.append('password', form.password);
+            formData.append('photo', form.photo);
+
+            // const data = await request('/api/auth/register', 'POST', formData)
+            //
+            // message(data.message)
+            axios.post('/api/auth/register', formData)
+                .then(res => {
+                    console.log(res);
+                    setSuccessMessage('Your profile created!')
+                    setErrorMessage('')
+                       setTimeout(window.location.reload(), 1500)
+                })
+                .catch(err => {
+                    console.log(err);
+                    setErrorMessage('Incorrect register data or photo not upload!')
+                });
+
 
         } catch (e) {
             console.log(e)
@@ -44,15 +72,22 @@ function RegisterModalWindow(props) {
 
 
   return (
-    <div className='registerModalWindow'>
+    <form encType='multipart/form-data' onSubmit={registerHandler} className='registerModalWindow'>
       <div className='btnClose' onClick={props.closeModalRegister}>
         &times;
       </div>
       <p className='registerModalWindow__title'>Register</p>
-      {/*<input className='registerModalWindow__input' placeholder='Name'></input>*/}
+
+        <input
+            onChange={changeHandler}
+            name="userName"
+            className='registerModalWindow__input'
+            placeholder='Name'
+        ></input>
       <input
         onChange={changeHandler}
         name="email"
+        type="email"
         className='registerModalWindow__input'
         placeholder='E-mail'
       ></input>
@@ -63,10 +98,21 @@ function RegisterModalWindow(props) {
         className='registerModalWindow__input'
         placeholder='Password'
       ></input>
-      <button onClick={registerHandler} className='registerModalWindow__submit'>Register</button>
+        <div className="file-wrapper">
+            <input
+                type="file"
+                accept=".png, .jpg, .jpeg"
+                name="photo"
+
+                onChange={handlePhoto}
+            />
+            <span>+ UPLOAD PHOTO</span>
+        </div>
+        <div className='file-name'>{fileName}</div>
+      <button type='submit' className='registerModalWindow__submit'>Register</button>
         <span className='success-message'>{successMessage}</span>
         <span className='error-message'>{errorMessage}</span>
-    </div>
+    </form>
   );
 }
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Country from "../../Pages/country/Country";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -6,10 +6,9 @@ import "./Card.css";
 import StarRatingNonEditable from "./../starRating/StarRatingNonEditable";
 import ScrollToTop from "../scrollToTop/ScrollToTop";
 
-// const ScrollLink=Scroll.Link
-
 export default function Card(props) {
   const link = "/country/" + props.linkId;
+
   return (
     <>
       <Link to={link} className='card'>

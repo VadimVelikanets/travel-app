@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import "./CurrencyWidget.css";
-import { useStore } from '../../redux/store';
+import { useStore } from "../../redux/store";
 function CurrencyWidget(props) {
   const { currency } = props;
   const [usd, setUsd] = useState(0);
   const [eur, setEur] = useState(0);
   const [rub, setRub] = useState(0);
   const [state] = useStore();
+
   useEffect(() => {
     fetch(
       `https://api.exchangeratesapi.io/latest?base=${currency}`
@@ -20,14 +21,14 @@ function CurrencyWidget(props) {
   });
 
   return (
-    <div className="currency-widget">
-      <p className="currency-widget__title">{state.lang.ExchangeRates}</p>
-      <div className="currency-widget__exchange-rates">
-        <div className="currency-widget__currency">
+    <div className='currency-widget'>
+      <p className='currency-widget__title'>{state.lang.ExchangeRates}</p>
+      <div className='currency-widget__exchange-rates'>
+        <div className='currency-widget__currency'>
           <img
             src={`/${currency}.svg`}
             alt={currency}
-            className="currency-widget__flag"
+            className='currency-widget__flag'
           />
           <span>1</span>
         </div>
