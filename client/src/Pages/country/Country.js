@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
 import "./Country.css";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import CarouselAttractions from "../../Components/carouselAttractions/CarouselAttractions";
 import CurrencyWidget from "../../Components/currencyWidget/CurrencyWidget";
 import WeatherWidget from "../../Components/weatherWidget/weatherWidget";
@@ -12,10 +12,16 @@ import ScrollToTop from "../../Components/scrollToTop/ScrollToTop";
 import { useStore } from "../../redux/store";
 import Loader from "../../Components/loader/Loader";
 
-export default function Country(props) {
+function Country(props) {
   const [country, setCountry] = useState(null);
   const [state] = useStore();
   const [countryLang, setLang] = useState(null);
+  const [activeCarousel, setActiveCarousel] = useState(false);
+
+  const openCarouselHandler = () => {
+    setActiveCarousel(true);
+  };
+
   useEffect(() => {
     const countryId = window.location.pathname;
     fetch(`/api${countryId}`)
@@ -105,7 +111,24 @@ export default function Country(props) {
                           ? country.lang.DE.country
                           : ""}
                       </h2>
-                      <CarouselAttractions />
+                      <div className='carousel_box'>
+                        <Button
+                          className='btn_carousel'
+                          variant='secondary'
+                          onClick={openCarouselHandler}
+                        >
+                          <img
+                            width='25'
+                            src={
+                              activeCarousel
+                                ? "https://image.flaticon.com/icons/png/512/49/49702.png"
+                                : "https://cdn.iconscout.com/icon/premium/png-256-thumb/expand-2520895-2115146.png"
+                            }
+                            alt='icon button'
+                          />
+                        </Button>
+                        <CarouselAttractions />
+                      </div>
                     </div>
                     <div className='video'>
                       <h2>{state.lang.video}</h2>
@@ -154,3 +177,4 @@ export default function Country(props) {
     </div>
   );
 }
+export default Country;

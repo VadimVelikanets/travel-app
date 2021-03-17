@@ -8,7 +8,6 @@ import {
   Route,
   Link,
   useLocation,
-  // useRouteMatch,
 } from "react-router-dom";
 import Home from "../../Pages/home/Home";
 import Country from "../../Pages/country/Country";
@@ -20,10 +19,9 @@ import SearchResult from "./../SearchResult";
 import { useStore } from "../../redux/store";
 import { changeLang } from "../../redux/mainReducer";
 import { useAuth } from "../../hooks/auth.hook";
+import { CSSTransition } from "react-transition-group";
 
-// import { useRouter } from "react-router-dom";
-
-export default function Header(props) {
+function Header(props) {
   const [state] = useStore();
   const { auth } = state;
   const [, dispatch] = useStore();
@@ -31,10 +29,6 @@ export default function Header(props) {
   const [isOpenRegister, setOpenRegister] = useState(false);
   const { login, logout, userId, token, email } = useAuth();
   const location = useLocation();
-  // const router = useRouter();
-
-  console.log("====location");
-  console.log(location);
 
   const showModalLogIn = () => {
     setOpenLogIn({ isOpenLogIn: true });
@@ -76,7 +70,6 @@ export default function Header(props) {
     setSearchValue("");
   };
   //Смена языка
-
   const changeLangHandler = (e) => {
     props.changeLang(e.target.value);
     dispatch(changeLang(e.target.value));
@@ -84,7 +77,25 @@ export default function Header(props) {
     //console.log("lang -", e.target.value);
   };
 
-  console.log("_____");
+  // const routes = [
+  //   {
+  //     path: "/",
+  //     Component: (
+  //       <Home
+  //         lang={props.lang}
+  //         countries={props.countries}
+  //         loading={props.loading}
+  //       />
+  //     ),
+  //   },
+  //   {
+  //     path: "/country/",
+  //     Component: (
+  //       <Country lang={props.lang} path={props.path} loading={props.loading} />
+  //     ),
+  //   },
+  // ];
+
   return (
     <>
       <Navbar
@@ -185,6 +196,7 @@ export default function Header(props) {
         </Container>
       </Navbar>
       <Switch>
+        {/* <ScrollToTop /> */}
         <Route exact path='/'>
           <Home
             lang={props.lang}
@@ -192,6 +204,7 @@ export default function Header(props) {
             loading={props.loading}
           />
         </Route>
+
         <Route path='/country/'>
           <Country
             lang={props.lang}
@@ -200,6 +213,20 @@ export default function Header(props) {
           />
         </Route>
       </Switch>
+      {/* {routes.map(({ path, Component }) => (
+        <Route key={path} exact path={path}>
+          {({ match }) => (
+            <CSSTransition
+              timeout={1000}
+              className='pages'
+              unmountOnExit
+              in={match !== null}
+            >
+              <Component />
+            </CSSTransition>
+          )}
+        </Route>
+      ))} */}
 
       {isOpenLogIn && (
         <LogInModalWindow closeModalLigIn={() => setOpenLogIn(false)} />
@@ -212,3 +239,4 @@ export default function Header(props) {
     </>
   );
 }
+export default Header;

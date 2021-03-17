@@ -5,6 +5,7 @@ import Header from "./Components/header/Header";
 import { useAuth } from "./hooks/auth.hook";
 import { BrowserRouter as Router } from "react-router-dom";
 import { useStore } from "./redux/store";
+import ScrollToTop from "./Components/scrollToTop/ScrollToTop";
 function App() {
   const { login, logout, token, userId, email } = useAuth();
   const isAuth = !!token;
@@ -37,6 +38,7 @@ function App() {
   }, []);
   return (
     <Router>
+      <ScrollToTop />
       <Header
         changeLang={changeLang}
         lang={lang}
