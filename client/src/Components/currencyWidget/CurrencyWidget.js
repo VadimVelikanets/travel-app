@@ -5,23 +5,20 @@ function CurrencyWidget(props) {
   const { currency } = props;
   const [usd, setUsd] = useState(0);
   const [eur, setEur] = useState(0);
-  const [rur, setRur] = useState(0);
-  const [usdEur, setUsdEur] = useState(0);
-  const [usdRub, setUsdRub] = useState(0);
+  const [rub, setRub] = useState(0);
   const [state] = useStore();
-  // useEffect(() => {
-  //   fetch(
-  //     "https://openexchangerates.org/api/latest.json?app_id=867a61a2d5384a4db512f7a19193f46f"
-  //   )
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setUsdEur(data.rates.EUR);
-  //       setUsdRub(data.rates.RUB);
-  //       setUsd((1 / data.rates[currency]).toFixed(1));
-  //       setEur((usd * usdEur).toFixed(1));
-  //       setRur((usd * usdRub).toFixed(1));
-  //     });
-  // });
+
+  useEffect(() => {
+    fetch(
+      `https://api.exchangeratesapi.io/latest?base=${currency}`
+      )
+      .then((res) => res.json())
+      .then((data) => {
+        data.rates.USD ? setUsd((data.rates.USD).toFixed(2)) : setUsd(1)
+        data.rates.EUR ? setEur((data.rates.EUR).toFixed(2)) : setEur(1)
+        data.rates.RUB ? setRub((data.rates.RUB).toFixed(2)) : setRub(1)
+      });
+  });
 
   return (
     <div className='currency-widget'>
@@ -35,17 +32,17 @@ function CurrencyWidget(props) {
           />
           <span>1</span>
         </div>
-        <div className='currency-widget__currency'>
-          <img src='/usd.svg' alt='usd' className='currency-widget__flag' />
+        <div className="currency-widget__currency">
+          <img src="/USD.svg" alt="usd" className="currency-widget__flag" />
           <span>{usd}</span>
         </div>
-        <div className='currency-widget__currency'>
-          <img src='/euro.svg' alt='euro' className='currency-widget__flag' />
+        <div className="currency-widget__currency">
+          <img src="/EUR.svg" alt="euro" className="currency-widget__flag" />
           <span>{eur}</span>
         </div>
-        <div className='currency-widget__currency'>
-          <img src='/rur.svg' alt='rur' className='currency-widget__flag' />
-          <span>{rur}</span>
+        <div className="currency-widget__currency">
+          <img src="/RUB.svg" alt="rub" className="currency-widget__flag" />
+          <span>{rub}</span>
         </div>
       </div>
     </div>

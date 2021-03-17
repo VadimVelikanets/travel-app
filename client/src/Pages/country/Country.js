@@ -158,13 +158,16 @@ function Country(props) {
                         capitalCity={country.lang.EN.capitalCity}
                       />
                     </div>
-
-                    <div className='mt-4 widget_currency'>
-                      <CurrencyWidget />
-                    </div>
-                    <div className='mt-4 widget_time'>
-                      <CountryTime title={state.lang.TimeIn} />
-                    </div>
+                                        <div className='mt-4 widget_currency'>
+                                            <CurrencyWidget currency={country.currency}/>
+                                        </div>
+                                        <div className='mt-4 widget_time'>
+                                            <CountryTime 
+                                                title={state.lang.TimeIn}
+                                                lat={country.coords.lat}
+                                                lon={country.coords.lon}
+                                                cityName={country.lang[props.lang].capitalCity} />
+                                        </div>
                   </Col>
                 </Row>
               </Container>
