@@ -44,12 +44,12 @@ function WeatherWidget(props) {
       </div>
       <div className="weather-widget__additional-info">
         <div className="weather-widget__additional-info-element">
-          <img src="wind.svg" alt="wind" className="weather-widget__pictures" />
+          <img src="/wind.svg" alt="wind" className="weather-widget__pictures" />
           <span>{wind} m/s</span>
         </div>
         <div className="weather-widget__additional-info-element">
           <img
-            src="droplets.svg"
+            src="/droplets.svg"
             alt="droplets"
             className="weather-widget__pictures"
           />
@@ -57,7 +57,7 @@ function WeatherWidget(props) {
         </div>
         <div className="weather-widget__additional-info-element">
           <img
-            src="pressure.svg"
+            src="/pressure.svg"
             alt="pressure"
             className="weather-widget__pictures"
           />

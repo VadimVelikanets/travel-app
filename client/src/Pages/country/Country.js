@@ -131,10 +131,14 @@ export default function Country(props) {
                                         </div>
 
                                         <div className='mt-4 widget_currency'>
-                                            <CurrencyWidget />
+                                            <CurrencyWidget currency={country.currency}/>
                                         </div>
                                         <div className='mt-4 widget_time'>
-                                            <CountryTime title={state.lang.TimeIn}/>
+                                            <CountryTime 
+                                                title={state.lang.TimeIn}
+                                                lat={country.coords.lat}
+                                                lon={country.coords.lon}
+                                                cityName={country.lang[props.lang].capitalCity} />
                                         </div>
                                     </Col>
                                 </Row>
