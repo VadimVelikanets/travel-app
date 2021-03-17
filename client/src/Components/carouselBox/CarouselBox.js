@@ -46,34 +46,7 @@ const CarouselBox = (props) => {
             <p className='carousel_caption'>{state.lang.carouselTxt}</p>
           </Carousel.Caption>
         </Carousel.Item>
-        <Carousel.Item>
-          <img
-            height='600'
-            className='d-block w-100'
-            src='https://poster.nicefon.ru/2017_02/19/1080x610/200435f9edecec64e8e0e4.jpg'
-            alt='nature'
-          />
-          <Carousel.Caption>
-            <h1 className='carousel_caption'>Travel SPA </h1>
-            <p className='carousel_caption'>
-              Application about popular resorts
-            </p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            height='600'
-            className='d-block w-100'
-            src='https://klike.net/uploads/posts/2019-11/1574605275_11.jpg'
-            alt='nature'
-          />
-          <Carousel.Caption>
-            <h1 className='carousel_caption'>Travel SPA </h1>
-            <p className='carousel_caption'>
-              Application about popular resorts
-            </p>
-          </Carousel.Caption>
-        </Carousel.Item>
+
       </Carousel>
     </>
   );
