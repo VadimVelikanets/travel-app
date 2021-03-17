@@ -51,7 +51,7 @@ function Header(props) {
 
   const searchCountry = (e) => {
     setTheArray([]);
-    const searchWord = e.target.value;
+    const searchWord = e.target.value.trim();
 
     setSearchValue(searchWord);
     props.countries
