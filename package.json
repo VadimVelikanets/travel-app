@@ -7,8 +7,9 @@
     "start": "node app.js",
     "server": "nodemon app.js",
     "client": "npm run start --prefix client",
+    "client-build": "npm run build --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\" ",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && run build"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && run client-build"
   },
   "engines": {
     "node": "14.16.0"
