@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FormControl, Navbar, Container, Form, Button } from "react-bootstrap";
@@ -29,7 +29,7 @@ function Header(props) {
   const [isOpenRegister, setOpenRegister] = useState(false);
   const { login, logout, userId, token, email } = useAuth();
   const location = useLocation();
-
+  const [saveLang, setSaveLang] = useState('EN')
   const showModalLogIn = () => {
     setOpenLogIn({ isOpenLogIn: true });
     setOpenRegister(false);
@@ -73,10 +73,15 @@ function Header(props) {
   const changeLangHandler = (e) => {
     props.changeLang(e.target.value);
     dispatch(changeLang(e.target.value));
-    //changeLang(e.target.value);
-    //console.log("lang -", e.target.value);
+    localStorage.setItem('lang', JSON.stringify({lang: e.target.value}))
   };
+  useEffect(() => {
+    if(localStorage.getItem("lang")){
+      setSaveLang(JSON.parse(localStorage.getItem("lang")).lang)
+      dispatch(changeLang(JSON.parse(localStorage.getItem("lang")).lang));
+    }
 
+  }, []);
   return (
     <>
       <Navbar
@@ -170,10 +175,17 @@ function Header(props) {
               )} */}
 
             <div className='btn_group_enter'>
-              <Form.Control as='select' onChange={changeLangHandler}>
-                <option>EN</option>
-                <option>RU</option>
-                <option>DE</option>
+              <Form.Control as='select'  onChange={changeLangHandler}>
+                {state.lang.value === 'EN' ?
+                    <option selected>EN</option> :
+                    <option >EN</option>}
+                {state.lang.value === 'RU' ?
+                    <option selected>RU</option> :
+                    <option >RU</option>}
+                {state.lang.value === 'DE' ?
+                    <option selected>DE</option> :
+                    <option >DE</option>}
+
               </Form.Control>
 
               {!localStorage.getItem("userData") ? (
