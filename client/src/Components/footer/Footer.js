@@ -5,7 +5,7 @@ import "./Footer.css";
 export default function Footer() {
   return (
     <div className='d-flex flex-column footer-container'>
-      <footer className='footer container '>
+      <footer className='footer container-fluid '>
         <div>
           <a href='https://rs.school/js/'>
             <img
