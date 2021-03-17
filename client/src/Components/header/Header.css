@@ -123,8 +123,13 @@ nav{
   text-decoration: none;
 }
 
+<<<<<<< HEAD
+.unVisible{
+  display: none;
+=======
 @media(max-width: 767px){
   .btn_group_enter{
     display: block;
   }
+>>>>>>> 61873f97fa719b3feecd50ea89d01cbf266290b5
 }

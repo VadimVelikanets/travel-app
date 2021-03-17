@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { Carousel } from "react-bootstrap";
 import "./CarouselBox.css";
-import { useStore } from '../../redux/store';
+import { useStore } from "../../redux/store";
+import Loader from "../loader/Loader";
 
-
-
-const CarouselBox =() =>{
-
-    const [state] = useStore();
-    return (
+const CarouselBox = (props) => {
+  const [state] = useStore();
+  return (
+    <>
+      {props.loading && <Loader />}
       <Carousel>
         <Carousel.Item>
           <img
@@ -19,9 +19,7 @@ const CarouselBox =() =>{
           />
           <Carousel.Caption>
             <h1 className='carousel_caption'>{state.lang.carouselTitle}</h1>
-            <p className='carousel_caption'>
-              {state.lang.carouselTxt}
-            </p>
+            <p className='carousel_caption'>{state.lang.carouselTxt}</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -33,9 +31,7 @@ const CarouselBox =() =>{
           />
           <Carousel.Caption>
             <h1 className='carousel_caption'>{state.lang.carouselTitle}</h1>
-            <p className='carousel_caption'>
-              {state.lang.carouselTxt}
-            </p>
+            <p className='carousel_caption'>{state.lang.carouselTxt}</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -47,9 +43,7 @@ const CarouselBox =() =>{
           />
           <Carousel.Caption>
             <h1 className='carousel_caption'>{state.lang.carouselTitle}</h1>
-            <p className='carousel_caption'>
-              {state.lang.carouselTxt}
-            </p>
+            <p className='carousel_caption'>{state.lang.carouselTxt}</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -81,7 +75,8 @@ const CarouselBox =() =>{
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
-    );
-}
+    </>
+  );
+};
 
 export default CarouselBox;
