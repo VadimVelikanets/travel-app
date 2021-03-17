@@ -12,7 +12,7 @@ const {check, validationResult} = require('express-validator');
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        cb(null, './uploads/');
+        cb(null, './client/public/uploads/');
     },
     filename: function(req, file, cb) {
         cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname);
@@ -37,7 +37,7 @@ const upload = multer({
 });
 
 router.route('/register')
-    .post(   upload.none('photo') ,
+    .post(   upload.single('photo') ,
 
     async (req, res) =>{
 
@@ -115,7 +115,7 @@ router.post(
                 { expiresIn: '1h' }
             )
 
-            res.json({ token, userId: user.id, email: email })
+            res.json({ token, userId: user.id, email: email, userName: user.userName, photo: user.photo })
 
         } catch (e) {
             res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })

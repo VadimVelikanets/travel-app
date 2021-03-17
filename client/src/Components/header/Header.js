@@ -162,8 +162,9 @@ export default function Header(props) {
                     </div>
                 ) : (
                     <div className='header-user'>
+                      <img src={"/uploads/" + JSON.parse(localStorage.getItem("userData")).photo} width='30' alt=""/>
                   <span>
-                    {JSON.parse(localStorage.getItem("userData")).email}
+                    {JSON.parse(localStorage.getItem("userData")).userName}
                   </span>
                       <a href='' onClick={logoutUser}>
                         {state.lang.LogOut}
