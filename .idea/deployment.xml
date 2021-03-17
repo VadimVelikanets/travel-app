@@ -9,7 +9,28 @@
           </mappings>
         </serverdata>
       </paths>
+      <paths name="merk-de">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="merk-ru">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="merkeleon-ae">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="merkeleon-at">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
