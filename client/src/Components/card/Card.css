@@ -5,6 +5,7 @@
   border: none;
   background-color: rgb(251 251 251);
   padding: 8px;
+  text-align: center;
 }
 .card:hover {
   text-decoration: none;
@@ -39,4 +40,10 @@
 .figure_image:hover {
   border-radius: 5px;
   transform: scale(1.1);
+}
+.country_rating_box{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }

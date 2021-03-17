@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./weatherWidget.css";
-
+import { useStore } from '../../redux/store';
 const kelvinToCelsius = (kelvin) => {
   const temp = Math.trunc(kelvin - 273.15);
 
@@ -15,7 +15,7 @@ function WeatherWidget(props) {
   const [wind, setWind] = useState();
   const [humidity, setHumidity] = useState();
   const [pressure, setPressure] = useState();
-
+  const [state] = useStore();
   useEffect(() => {
     fetch(
       `http://api.openweathermap.org/data/2.5/weather?q=${props.capitalCity}&appid=489c6e3b9c228bd88ea6333b1a07dfef`
@@ -33,7 +33,7 @@ function WeatherWidget(props) {
 
   return (
     <div className="weather-widget">
-      <p className="weather-widget__cityName">Weather in {props.capitalCity}</p>
+      <p className="weather-widget__cityName">{state.lang.WeatherIn} {props.capitalCity}</p>
       <div className="weather-widget__info">
         <span className="weather-widget__degree">{weather}</span>
         <img
@@ -44,12 +44,12 @@ function WeatherWidget(props) {
       </div>
       <div className="weather-widget__additional-info">
         <div className="weather-widget__additional-info-element">
-          <img src="wind.svg" alt="wind" className="weather-widget__pictures" />
+          <img src="/wind.svg" alt="wind" className="weather-widget__pictures" />
           <span>{wind} m/s</span>
         </div>
         <div className="weather-widget__additional-info-element">
           <img
-            src="droplets.svg"
+            src="/droplets.svg"
             alt="droplets"
             className="weather-widget__pictures"
           />
@@ -57,7 +57,7 @@ function WeatherWidget(props) {
         </div>
         <div className="weather-widget__additional-info-element">
           <img
-            src="pressure.svg"
+            src="/pressure.svg"
             alt="pressure"
             className="weather-widget__pictures"
           />

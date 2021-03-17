@@ -1,5 +1,5 @@
 import React from "react";
-import "./../styles/GalleryHome.css";
+import "./GalleryHome.css";
 
 export default function GalleryHome() {
   return (

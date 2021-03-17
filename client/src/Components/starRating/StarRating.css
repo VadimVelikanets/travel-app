@@ -1,0 +1,13 @@
+.star_rating_box{
+    display: flex;
+    justify-content: center;
+   align-items: center;
+   margin-left: 10px;
+}
+.rating{
+    margin-left: 10px;
+    color: #464545;
+}
+.dv-star-rating{
+    font-size: 35px;
+}
