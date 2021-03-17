@@ -9,7 +9,11 @@ nav{
 }
 .btn_clean_form {
   position: absolute;
-  left: 166px;
+  right: 13px;
+  padding: 3px 6px;
+  border-radius: 50%;
+  line-height: 1;
+  top: 6px;
 }
 .input_country {
   position: relative;
@@ -77,6 +81,7 @@ nav{
 }
 .form-control{
   width: 100px;
+  margin-right: 20px;
 }
 .search-result__item{
   font-size: 18px;
@@ -89,6 +94,11 @@ nav{
   width: 100%;
   margin-bottom: 20px;
   opacity: 0;
+}
+.header-user img{
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
 }
 .file-wrapper span{
   position: absolute;
@@ -112,3 +122,8 @@ nav{
   text-decoration: none;
 }
 
+@media(max-width: 767px){
+  .btn_group_enter{
+    display: block;
+  }
+}

@@ -11,7 +11,7 @@ function LogInModalWindow(props) {
     const [state] = useStore();
     const { auth } = state;
     //const auth = useContext(authContext)
-    const {login, logout, userId, token, email} = useAuth()
+    const {login, logout, userId, token, email, userName, photo} = useAuth()
     const message = useMessage()
     const {loading, request, errors, clearError} = useHttp()
     const [errorMessage, setErrorMessage] = useState('')
@@ -30,7 +30,7 @@ function LogInModalWindow(props) {
     const loginHandler = async () => {
         try {
             const data = await request('/api/auth/login', 'POST', {...form})
-            login(data.token, data.userId, data.email)
+            login(data.token, data.userId, data.userName, data.photo)
             window.location.reload();
         } catch (e) {
             console.log(e)
