@@ -41,13 +41,21 @@
   margin: 0 auto;
   /* display: flex; */
 }
-.carousel_box{
+.carousel_box,
+.video_box,
+.map_box {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
-.btn_carousel{
-  border-radius: 50%;
-  position: absolute;
-  right: -10px;
-  top: -10px;
-  z-index: 1000;
+.btn_carousel,
+.btn_video,
+.btn_map {
+  margin: 10px;
+}
+iframe {
+  width: 100%;
+  min-height: 500px;
+  height: 100%;
 }
