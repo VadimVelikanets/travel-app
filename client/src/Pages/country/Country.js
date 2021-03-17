@@ -127,7 +127,7 @@ function Country(props) {
                             alt='icon button'
                           />
                         </Button>
-                        <CarouselAttractions />
+                        <CarouselAttractions galeryImages={country.galeryImages}/>
                       </div>
                     </div>
                     <div className='video'>
