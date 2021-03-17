@@ -6,6 +6,7 @@ import { useAuth } from "./hooks/auth.hook";
 import { BrowserRouter as Router } from "react-router-dom";
 import { useStore } from "./redux/store";
 import ScrollToTop from "./Components/scrollToTop/ScrollToTop";
+import {changeLang as changeLangAC} from "./redux/mainReducer";
 function App() {
   const { login, logout, token, userId, email } = useAuth();
   const isAuth = !!token;
@@ -14,6 +15,7 @@ function App() {
   const [isLoaded, setLoaded] = useState(false);
   const [lang, setLang] = useState("EN");
   const [state] = useStore();
+    const [, dispatch] = useStore();
   const [loading, setLoading] = useState(true);
 
   console.log(state);
@@ -21,6 +23,10 @@ function App() {
     setLang(lang);
   };
   useEffect(() => {
+      if(localStorage.getItem("lang")){
+          setLang(JSON.parse(localStorage.getItem("lang")).lang)
+          dispatch(changeLangAC(JSON.parse(localStorage.getItem("lang")).lang));
+      }
     fetch("/api/country")
       .then((res) => res.json())
       .then(

@@ -4,6 +4,7 @@ function noop(){
 
 }
 const EN = {
+    value: 'EN',
     LogIn: 'Log In',
     SingUp: 'Sign Up',
     LogOut: 'LogOut',
@@ -22,6 +23,7 @@ const EN = {
     TimeIn: 'Time In'
 }
 const RU = {
+    value: 'RU',
     LogIn: 'Вход',
     SingUp: 'Регистрация',
     LogOut: 'Выйти',
@@ -40,6 +42,7 @@ const RU = {
     TimeIn: 'Время в'
 }
 const DE = {
+    value: 'DE',
     LogIn: 'Einloggen',
     SingUp: 'Anmeldung',
     LogOut: 'Ausloggen',
