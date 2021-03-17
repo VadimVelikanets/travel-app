@@ -77,25 +77,6 @@ function Header(props) {
     //console.log("lang -", e.target.value);
   };
 
-  // const routes = [
-  //   {
-  //     path: "/",
-  //     Component: (
-  //       <Home
-  //         lang={props.lang}
-  //         countries={props.countries}
-  //         loading={props.loading}
-  //       />
-  //     ),
-  //   },
-  //   {
-  //     path: "/country/",
-  //     Component: (
-  //       <Country lang={props.lang} path={props.path} loading={props.loading} />
-  //     ),
-  //   },
-  // ];
-
   return (
     <>
       <Navbar
@@ -157,6 +138,37 @@ function Header(props) {
               ""
             )}
 
+            {/* <div className='btn_group_enter'>
+              <Form.Control as='select' onChange={changeLangHandler}>
+                <option>EN</option>
+                <option>RU</option>
+                <option>DE</option>
+              </Form.Control>
+
+              {!localStorage.getItem("userData") ? (
+                <div>
+                  <Button
+                    variant='outline-warning'
+                    className='ml-3 log_in'
+                    onClick={showModalLogIn}
+                  >
+                    {state.lang.LogIn}
+                  </Button>
+                  <Button
+                    variant='outline-danger'
+                    className='ml-3 sing_up'
+                    onClick={showModalRegister}
+                  >
+                    {state.lang.SingUp}
+                  </Button>
+                </div>
+              ) : (
+<<<<<<< HEAD
+                <div className='header-user'>
+======= */}
+            {/* ""
+              )} */}
+
             <div className='btn_group_enter'>
               <Form.Control as='select' onChange={changeLangHandler}>
                 <option>EN</option>
@@ -183,8 +195,17 @@ function Header(props) {
                 </div>
               ) : (
                 <div className='header-user'>
+                  <img
+                    src={
+                      "/uploads/" +
+                      JSON.parse(localStorage.getItem("userData")).photo
+                    }
+                    width='30'
+                    alt=''
+                  />
+                  {/* >>>>>>> 61873f97fa719b3feecd50ea89d01cbf266290b5 */}
                   <span>
-                    {JSON.parse(localStorage.getItem("userData")).email}
+                    {JSON.parse(localStorage.getItem("userData")).userName}
                   </span>
                   <a href='' onClick={logoutUser}>
                     {state.lang.LogOut}
@@ -213,20 +234,6 @@ function Header(props) {
           />
         </Route>
       </Switch>
-      {/* {routes.map(({ path, Component }) => (
-        <Route key={path} exact path={path}>
-          {({ match }) => (
-            <CSSTransition
-              timeout={1000}
-              className='pages'
-              unmountOnExit
-              in={match !== null}
-            >
-              <Component />
-            </CSSTransition>
-          )}
-        </Route>
-      ))} */}
 
       {isOpenLogIn && (
         <LogInModalWindow closeModalLigIn={() => setOpenLogIn(false)} />
