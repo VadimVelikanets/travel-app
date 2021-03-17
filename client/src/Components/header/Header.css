@@ -2,7 +2,7 @@ nav {
   position: relative;
 }
 .navbar-collapse {
-  justify-content: flex-end;
+  justify-content: space-evenly;
 }
 .input_box {
   position: relative;
@@ -14,6 +14,7 @@ nav {
   border-radius: 50%;
   line-height: 1;
   top: 6px;
+  cursor: pointer;
 }
 .input_country {
   position: relative;
@@ -22,16 +23,20 @@ nav {
   justify-content: center;
 }
 .input {
+  width: 100% !important;
   box-shadow: rgb(0 0 0 / 15%) 0px 2px 8px;
 }
 .selecting_language {
   max-width: 84px;
 }
 .btn_group_enter {
-  max-width: 360px;
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
-  display: flex;
-  margin-top: 5px;
+  max-width: 360px;
+
+  margin: 10px;
 }
 
 .log_in,
@@ -80,7 +85,7 @@ nav {
 }
 .form-control {
   width: 100px;
-  margin-right: 20px;
+  /* margin-right: 20px; */
 }
 .search-result__item {
   font-size: 18px;
@@ -129,4 +134,22 @@ nav {
   .btn_group_enter {
     display: block;
   }
+}
+.form-inline {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+}
+.btn_group_enter {
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+}
+.navbar-collapse {
+  display: flex;
+  flex-wrap: wrap;
+}
+.unVisible {
+  display: none;
 }

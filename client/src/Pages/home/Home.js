@@ -61,7 +61,7 @@ const MainPage = (props) => {
             </div>
           </div>
         </section>
-        <section className='section gallery_section'>
+        {/* <section className='section gallery_section'>
           <div className='container'>
             <h2 className='title'>gallery</h2>
           </div>
@@ -74,7 +74,7 @@ const MainPage = (props) => {
             <GalleryHome />
             <GalleryHome />
           </div>
-        </section>
+        </section> */}
       </main>
     </>
   );
