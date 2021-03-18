@@ -1,10 +1,10 @@
-nav{
+nav {
   position: relative;
 }
 .navbar-collapse {
-  justify-content: flex-end;
+  justify-content: space-evenly;
 }
-.input_box{
+.input_box {
   position: relative;
 }
 .btn_clean_form {
@@ -14,25 +14,29 @@ nav{
   border-radius: 50%;
   line-height: 1;
   top: 6px;
+  cursor: pointer;
 }
 .input_country {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 .input {
+  width: 100% !important;
   box-shadow: rgb(0 0 0 / 15%) 0px 2px 8px;
 }
 .selecting_language {
   max-width: 84px;
 }
 .btn_group_enter {
-  max-width: 360px;
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
-  display: flex;
-  margin-top: 5px;
+  max-width: 360px;
+
+  margin: 10px;
 }
 
 .log_in,
@@ -62,7 +66,7 @@ nav{
   color: red;
 }
 
-.search-result{
+.search-result {
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
@@ -75,33 +79,33 @@ nav{
   max-width: 400px;
   box-shadow: 0px 15px 40px rgb(0 0 0 / 15%);
 }
-.search-result__title{
+.search-result__title {
   font-weight: bold;
   font-size: 20px;
 }
-.form-control{
+.form-control {
   width: 100px;
-  margin-right: 20px;
+  /* margin-right: 20px; */
 }
-.search-result__item{
+.search-result__item {
   font-size: 18px;
   font-weight: bold;
 }
-.file-wrapper{
+.file-wrapper {
   position: relative;
 }
-.file-wrapper input{
+.file-wrapper input {
   width: 100%;
   margin-bottom: 20px;
   opacity: 0;
 }
-.header-user img{
+.header-user img {
   width: 30px;
   height: 30px;
   object-fit: cover;
   border-radius: 50%;
 }
-.file-wrapper span{
+.file-wrapper span {
   position: absolute;
   top: 0;
   left: 0;
@@ -114,22 +118,38 @@ nav{
   padding: 7px;
   font-weight: bold;
 }
-.file-name{
+.file-name {
   color: #ffd900;
   font-weight: bold;
   margin-bottom: 15px;
 }
-.search-result__item:hover{
+.search-result__item:hover {
   text-decoration: none;
 }
-
 
 .unVisible {
   display: none;
 }
-@media(max-width: 767px){
-  .btn_group_enter{
+@media (max-width: 767px) {
+  .btn_group_enter {
     display: block;
   }
-
+}
+.form-inline {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+}
+.btn_group_enter {
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+}
+.navbar-collapse {
+  display: flex;
+  flex-wrap: wrap;
+}
+.unVisible {
+  display: none;
 }

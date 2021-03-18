@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { withRouter } from "react-router-dom";
 import "./Country.css";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import CarouselAttractions from "../../Components/carouselAttractions/CarouselAttractions";
@@ -11,16 +10,16 @@ import StarRatingNonEditable from "./../../Components//starRating/StarRatingNonE
 import ScrollToTop from "../../Components/scrollToTop/ScrollToTop";
 import { useStore } from "../../redux/store";
 import Loader from "../../Components/loader/Loader";
+import { FullScreen, useFullScreenHandle } from "react-full-screen";
 
 function Country(props) {
   const [country, setCountry] = useState(null);
   const [state] = useStore();
   const [countryLang, setLang] = useState(null);
-  const [activeCarousel, setActiveCarousel] = useState(false);
 
-  const openCarouselHandler = () => {
-    setActiveCarousel(true);
-  };
+  const fullScreenCarousel = useFullScreenHandle();
+  const fullScreenVideo = useFullScreenHandle();
+  const fullScreenMap = useFullScreenHandle();
 
   useEffect(() => {
     const countryId = window.location.pathname;
@@ -111,45 +110,64 @@ function Country(props) {
                           ? country.lang.DE.country
                           : ""}
                       </h2>
+
                       <div className='carousel_box'>
-                        <Button
+                        <div
                           className='btn_carousel'
-                          variant='secondary'
-                          onClick={openCarouselHandler}
+                          onClick={fullScreenCarousel.enter}
                         >
                           <img
-                            width='25'
-                            src={
-                              activeCarousel
-                                ? "https://image.flaticon.com/icons/png/512/49/49702.png"
-                                : "https://cdn.iconscout.com/icon/premium/png-256-thumb/expand-2520895-2115146.png"
-                            }
-                            alt='icon button'
+                            width='30'
+                            src='https://img.pngio.com/full-screen-vector-icon-full-screen-maximize-full-screen-icon-cool-black-pngs-full-screen-640_640.png'
                           />
-                        </Button>
-                        <CarouselAttractions galeryImages={country.galeryImages}/>
+                        </div>
                       </div>
+                      <FullScreen handle={fullScreenCarousel}>
+                        <CarouselAttractions
+                          galeryImages={country.galeryImages}
+                        />
+                      </FullScreen>
                     </div>
+
                     <div className='video'>
                       <h2>{state.lang.video}</h2>
-                      <iframe
-                        width='847'
-                        height='315'
-                        src={country.videoUrl}
-                        frameBorder='0'
-                        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                        allowFullScreen
-                      ></iframe>
+                      <div className='video_box'>
+                        <div
+                          className='btn_video'
+                          onClick={fullScreenVideo.enter}
+                        >
+                          <img
+                            width='30'
+                            src='https://img.pngio.com/full-screen-vector-icon-full-screen-maximize-full-screen-icon-cool-black-pngs-full-screen-640_640.png'
+                          />
+                        </div>
+                      </div>
+                      <FullScreen handle={fullScreenVideo}>
+                        <iframe
+                          src={country.videoUrl}
+                          frameBorder='0'
+                          allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                          allowFullScreen
+                        ></iframe>
+                      </FullScreen>
                     </div>
                     <div id='map'>
                       <h2>{state.lang.map}</h2>
-                      <iframe
-                        src={country.mapUrl}
-                        width='847'
-                        height='450'
-                        allowFullScreen=''
-                        loading='lazy'
-                      ></iframe>
+                      <div className='map_box'>
+                        <div className='btn_map' onClick={fullScreenMap.enter}>
+                          <img
+                            width='30'
+                            src='https://img.pngio.com/full-screen-vector-icon-full-screen-maximize-full-screen-icon-cool-black-pngs-full-screen-640_640.png'
+                          />
+                        </div>
+                      </div>
+                      <FullScreen handle={fullScreenMap}>
+                        <iframe
+                          src={country.mapUrl}
+                          allowFullScreen=''
+                          loading='lazy'
+                        ></iframe>
+                      </FullScreen>
                     </div>
                   </Col>
                   <Col md='3' className='sidebar sidebar_right'>
@@ -158,16 +176,17 @@ function Country(props) {
                         capitalCity={country.lang.EN.capitalCity}
                       />
                     </div>
-                                        <div className='mt-4 widget_currency'>
-                                            <CurrencyWidget currency={country.currency}/>
-                                        </div>
-                                        <div className='mt-4 widget_time'>
-                                            <CountryTime 
-                                                title={state.lang.TimeIn}
-                                                lat={country.coords.lat}
-                                                lon={country.coords.lon}
-                                                cityName={country.lang[props.lang].capitalCity} />
-                                        </div>
+                    <div className='mt-4 widget_currency'>
+                      <CurrencyWidget currency={country.currency} />
+                    </div>
+                    <div className='mt-4 widget_time'>
+                      <CountryTime
+                        title={state.lang.TimeIn}
+                        lat={country.coords.lat}
+                        lon={country.coords.lon}
+                        cityName={country.lang[props.lang].capitalCity}
+                      />
+                    </div>
                   </Col>
                 </Row>
               </Container>

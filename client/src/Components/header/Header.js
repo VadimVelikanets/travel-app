@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FormControl, Navbar, Container, Form, Button } from "react-bootstrap";
@@ -29,7 +29,7 @@ function Header(props) {
   const [isOpenRegister, setOpenRegister] = useState(false);
   const { login, logout, userId, token, email } = useAuth();
   const location = useLocation();
-  const [saveLang, setSaveLang] = useState('EN')
+  const [saveLang, setSaveLang] = useState("EN");
   const showModalLogIn = () => {
     setOpenLogIn({ isOpenLogIn: true });
     setOpenRegister(false);
@@ -51,7 +51,7 @@ function Header(props) {
 
   const searchCountry = (e) => {
     setTheArray([]);
-    const searchWord = e.target.value;
+    const searchWord = e.target.value.trim();
 
     setSearchValue(searchWord);
     props.countries
@@ -73,14 +73,13 @@ function Header(props) {
   const changeLangHandler = (e) => {
     props.changeLang(e.target.value);
     dispatch(changeLang(e.target.value));
-    localStorage.setItem('lang', JSON.stringify({lang: e.target.value}))
+    localStorage.setItem("lang", JSON.stringify({ lang: e.target.value }));
   };
   useEffect(() => {
-    if(localStorage.getItem("lang")){
-      setSaveLang(JSON.parse(localStorage.getItem("lang")).lang)
+    if (localStorage.getItem("lang")) {
+      setSaveLang(JSON.parse(localStorage.getItem("lang")).lang);
       dispatch(changeLang(JSON.parse(localStorage.getItem("lang")).lang));
     }
-
   }, []);
   return (
     <>
@@ -127,13 +126,12 @@ function Header(props) {
                     className=' mr-sm-2 input'
                     value={searchValue}
                   />
-                  <Button
-                    variant='secondary'
-                    className='btn_clean_form'
-                    onClick={cleanInput}
-                  >
-                    &times;
-                  </Button>
+                  <div className='btn_clean_form' onClick={cleanInput}>
+                    <img
+                      width='25'
+                      src='http://s1.iconbird.com/ico/0612/vistabasesoftwareicons/w256h2561339252558DeleteRed.png'
+                    />
+                  </div>
                 </div>
               </div>
             </Form>
@@ -175,31 +173,36 @@ function Header(props) {
               )} */}
 
             <div className='btn_group_enter'>
-              <Form.Control as='select'  onChange={changeLangHandler}>
-                {state.lang.value === 'EN' ?
-                    <option selected>EN</option> :
-                    <option >EN</option>}
-                {state.lang.value === 'RU' ?
-                    <option selected>RU</option> :
-                    <option >RU</option>}
-                {state.lang.value === 'DE' ?
-                    <option selected>DE</option> :
-                    <option >DE</option>}
-
+              <Form.Control as='select' onChange={changeLangHandler}>
+                {state.lang.value === "EN" ? (
+                  <option selected>EN</option>
+                ) : (
+                  <option>EN</option>
+                )}
+                {state.lang.value === "RU" ? (
+                  <option selected>RU</option>
+                ) : (
+                  <option>RU</option>
+                )}
+                {state.lang.value === "DE" ? (
+                  <option selected>DE</option>
+                ) : (
+                  <option>DE</option>
+                )}
               </Form.Control>
 
               {!localStorage.getItem("userData") ? (
-                <div>
+                <div className='btn_group_enter'>
                   <Button
                     variant='outline-warning'
-                    className='ml-3 log_in'
+                    className=' log_in'
                     onClick={showModalLogIn}
                   >
                     {state.lang.LogIn}
                   </Button>
                   <Button
                     variant='outline-danger'
-                    className='ml-3 sing_up'
+                    className=' sing_up'
                     onClick={showModalRegister}
                   >
                     {state.lang.SingUp}
