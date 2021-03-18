@@ -1,7 +1,8 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 const SearchResult = (props) =>{
     const searchItems  = props.searchArray.map((item) =>
-        <div><a href={'/country/', item._id} className='search-result__item'>
+        <div><Link to={'/country/'+ item._id} className='search-result__item'>
             { props.langValue === 'EN' ?
                 item.lang.EN.country :
                 props.langValue === 'RU' ?
@@ -9,7 +10,7 @@ const SearchResult = (props) =>{
                     props.langValue === 'DE' ?
                         item.lang.DE.country : ''
             }
-        </a></div>
+        </Link></div>
     );
 
 
