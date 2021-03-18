@@ -13,12 +13,11 @@ class CountryTime extends React.Component {
   componentDidMount() {
     const { lat, lon } = this.props;
     fetch(
-      `http://api.geonames.org/timezoneJSON?lat=${lat}&lng=${lon}&username=nolibev804`
+      `https://api.ipgeolocation.io/timezone?apiKey=924bc7fc02624a44b3dab72490762202&lat=${lat}&long=${lon}`
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        const [, time] = data.time.split(" ");
+        const time = data.time_24;
         const [hour, min] = time.split(":");
         this.setState({
           minutes: +min,
