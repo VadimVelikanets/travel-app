@@ -76,7 +76,18 @@ function Header(props) {
               setTheArray((searchArray) => [...searchArray, searchResult])
           );
     }
+    else if(state.lang.value === 'DE'){
 
+      props.countries
+          .filter((country) =>
+              country.lang.DE.country
+                  .toLocaleLowerCase()
+                  .includes(searchWord.toLocaleLowerCase())
+          )
+          .map((searchResult) =>
+              setTheArray((searchArray) => [...searchArray, searchResult])
+          );
+    }
   };
 
   //очистка инпута
