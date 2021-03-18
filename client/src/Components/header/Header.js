@@ -54,15 +54,29 @@ function Header(props) {
     const searchWord = e.target.value.trim();
 
     setSearchValue(searchWord);
-    props.countries
-      .filter((country) =>
-        country.lang.EN.country
-          .toLocaleLowerCase()
-          .includes(searchWord.toLocaleLowerCase())
-      )
-      .map((searchResult) =>
-        setTheArray((searchArray) => [...searchArray, searchResult])
-      );
+    if(state.lang.value === 'EN'){
+      props.countries
+          .filter((country) =>
+              country.lang.EN.country
+                  .toLocaleLowerCase()
+                  .includes(searchWord.toLocaleLowerCase())
+          )
+          .map((searchResult) =>
+              setTheArray((searchArray) => [...searchArray, searchResult])
+          );
+    } else if(state.lang.value === 'RU'){
+
+      props.countries
+          .filter((country) =>
+              country.lang.RU.country
+                  .toLocaleLowerCase()
+                  .includes(searchWord.toLocaleLowerCase())
+          )
+          .map((searchResult) =>
+              setTheArray((searchArray) => [...searchArray, searchResult])
+          );
+    }
+
   };
 
   //очистка инпута
@@ -136,7 +150,7 @@ function Header(props) {
               </div>
             </Form>
             {searchValue != "" ? (
-              <SearchResult searchArray={searchArray} />
+              <SearchResult langValue={state.lang.value} searchArray={searchArray} />
             ) : (
               ""
             )}

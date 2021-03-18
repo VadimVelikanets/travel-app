@@ -33,7 +33,7 @@ function CurrencyWidget(props) {
           <span>1</span>
         </div>
         <div className="currency-widget__currency">
-          <img src="/USD.svg" alt="usd" className="currency-widget__flag" />
+          <img src="/usd.svg" alt="usd" className="currency-widget__flag" />
           <span>{usd}</span>
         </div>
         <div className="currency-widget__currency">
