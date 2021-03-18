@@ -18,7 +18,7 @@ function WeatherWidget(props) {
   const [state] = useStore();
   useEffect(() => {
     fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${props.capitalCity}&appid=489c6e3b9c228bd88ea6333b1a07dfef`
+      `https://api.openweathermap.org/data/2.5/weather?q=${props.capitalCity}&appid=489c6e3b9c228bd88ea6333b1a07dfef`
     )
       .then((res) => res.json())
       .then((data) => {
